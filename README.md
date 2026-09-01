@@ -1,4 +1,4 @@
-# ZH JOKER TABLE V3.4.1
+# ZH JOKER TABLE V3.4.2
 
 一款从真实聚会需求出发制作的轻量级网页小游戏，整合「小姐牌」与「大话骰」两种常用玩法。
 
@@ -35,7 +35,7 @@
 - 仅 1、4 点使用红色，其余点数使用黑色
 - 与小姐牌共用统一的像素游戏视觉系统
 
-## ✦ V3.4.1 这次真正改了什么
+## ✦ V3.4.2 这次真正改了什么
 
 这次更新的重点不是只改 README，也不是只换几枚图标，而是把之前确认过的像素主视觉真正落到了网页里。
 
@@ -50,22 +50,31 @@
 ## 📁 文件说明
 
 ```text
-ZH_JOKER_TABLE_V3.4.1/
+ZH_JOKER_TABLE_V3.4.2/
 ├─ index.html
 ├─ README.md
 ├─ VERSION.txt
 ├─ 替换说明.txt
-├─ assets/
-│  ├─ backgrounds/
-│  │  ├─ v341-home-light.png
-│  │  └─ v341-game-dark.png
-│  ├─ branding/
-│  │  └─ jester-mascot.png
-│  └─ icons-v34/
-└─ preview/
+└─ assets/
+   ├─ backgrounds/
+   │  ├─ v341-home-light.webp
+   │  └─ v341-game-dark.webp
+   ├─ branding/
+   │  └─ jester-mascot.webp
+   └─ icons-v342/
+      ├─ home.webp
+      ├─ dice.webp
+      ├─ history.webp
+      ├─ k.webp
+      ├─ lady.webp
+      ├─ stash.webp
+      ├─ reset.webp
+      ├─ reroll.webp
+      ├─ sun.webp
+      └─ moon.webp
 ```
 
-> V3.4.1 继续复用原仓库中的 `assets/cards/`、`assets/dice-cup.png` 等游戏素材，因此替换时请保留原有这些文件。
+> V3.4.2 继续复用原仓库中的 `assets/cards/`、`assets/dice-cup.png` 等游戏素材，因此替换时请保留原有这些文件。
 
 ## 🚀 Deployment
 
@@ -76,3 +85,14 @@ ZH_JOKER_TABLE_V3.4.1/
 **https://zengheng9662.github.io/zh-joker-table/**
 
 不会因为你更新内容而改变。
+
+
+## ✦ V3.4.2 视觉微调
+
+- 功能图标全面替换为更简化的像素图标，优先保证小尺寸下的识别度
+- K 规则使用单独的像素 K 图标
+- 太阳 / 月亮进一步减少装饰与色块
+- 大话骰入口改为清晰的像素骰子
+- 移除首页「设置」入口，保留必要操作
+- 首页封面取消「小姐牌」大标题与副标题，仅展示带小丑头像的像素卡牌
+- 删除旧 `assets/icons-v34/`，统一使用 `assets/icons-v342/`

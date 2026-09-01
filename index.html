@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#160b30" />
-<title>小姐牌 · ZH JOKER TABLE V3.4.1</title>
+<title>小姐牌 · ZH JOKER TABLE V3.4.2</title>
 <style>
 :root{
   --night:#120827;--night-2:#1a0b38;--night-3:#28104e;--ink:#291d56;--muted:#81769d;
@@ -104,9 +104,9 @@ html[data-theme="dark"] .logo-title{color:#ffd253;text-shadow:3px 0 #35115b,-3px
 @media (max-width:420px){.brand-cn{display:none}.game-frame{padding:10px}.topbar .icon-btn{width:41px;height:41px;padding:5px}.count-panel{font-size:19px;gap:6px}.deck-mini{width:25px;height:25px}.logo-title{font-size:62px}.joker-mark{width:61px;height:61px}.deck-stack{width:98px}.home-actions>.pixel-btn{min-height:52px}.card-wrap,#nextBtn{width:min(82vw,325px)}.dice-stage{height:63vh}.dice-cup{width:71%}}
 @media (max-height:720px) and (max-width:899px){.brandbar{min-height:50px}.brand img{width:32px;height:32px}.game-frame{min-height:calc(100dvh - 70px)}.joker-mark{width:48px;height:48px}.logo-title{font-size:52px}.suits{font-size:16px}.deck-stack{width:76px}.home-actions>.pixel-btn{min-height:44px}.card-wrap{height:min(56vh,430px);width:auto;aspect-ratio:5/7}#nextBtn{min-height:48px}.dice-stage{height:59vh;min-height:340px}}
 
-/* V3.4.1 visual asset layer */
-:root{--home-art:url("assets/backgrounds/v341-home-light.png");--play-art:url("assets/backgrounds/v341-game-dark.png")}
-html[data-theme="dark"]{--home-art:url("assets/backgrounds/v341-game-dark.png");--play-art:url("assets/backgrounds/v341-game-dark.png")}
+/* V3.4.2 visual asset layer */
+:root{--home-art:url("assets/backgrounds/v341-home-light.webp");--play-art:url("assets/backgrounds/v341-game-dark.webp")}
+html[data-theme="dark"]{--home-art:url("assets/backgrounds/v341-game-dark.webp");--play-art:url("assets/backgrounds/v341-game-dark.webp")}
 .app{background:linear-gradient(rgba(28,10,58,.97),rgba(12,5,28,.97)),repeating-linear-gradient(0deg,transparent 0 29px,rgba(180,97,255,.06) 30px 32px),repeating-linear-gradient(90deg,transparent 0 55px,rgba(180,97,255,.05) 56px 58px)}
 .game-frame{background:transparent;border:none;box-shadow:none;padding:clamp(16px,2.2vw,26px);overflow:hidden}
 .game-frame::before{content:"";position:absolute;inset:0;background-size:100% 100%;background-position:center;background-repeat:no-repeat;z-index:-2}
@@ -153,38 +153,65 @@ html[data-theme="dark"] .panel,html[data-theme="dark"] .modal-box{background:lin
   .home-actions>.pixel-btn{min-height:58px;font-size:21px}
 }
 
+
+/* V3.4.2 simplified pixel icon + cover pass */
+.home .brand-cn{display:none}
+.icon-btn{padding:5px}
+.icon-btn img{width:88%;height:88%;object-fit:contain;image-rendering:pixelated;filter:none}
+.mode-btn img{width:92%;height:92%}
+.home-tools{justify-content:center}
+.deck-mini-pixel{display:inline-block;width:24px;height:31px;background:#8c62ef;border:3px solid #24124f;box-shadow:inset 0 0 0 2px #d9c8ff,3px 3px 0 #4a2188;position:relative}
+.deck-mini-pixel::after{content:"";position:absolute;width:7px;height:7px;border:2px solid #fff;left:50%;top:50%;transform:translate(-50%,-50%) rotate(45deg)}
+.hero{min-height:0;display:flex;align-items:center;justify-content:center}
+.hero-card-stack{width:clamp(190px,24vw,300px);aspect-ratio:3/4;position:relative;transform:rotate(3deg);filter:drop-shadow(10px 14px 0 rgba(46,18,92,.22))}
+.hero-card-back,.hero-card-front{position:absolute;inset:0;border:5px solid #25104e;border-radius:3px;background:#4d218e}
+.hero-card-back-3{transform:translate(16px,16px);background:#2d125b}
+.hero-card-back-2{transform:translate(9px,9px);background:#5424a0}
+.hero-card-front{background:linear-gradient(145deg,#a77cff,#6632c7);display:grid;place-items:center;overflow:hidden;box-shadow:inset 0 0 0 3px #c7a8ff}
+.hero-card-frame{position:absolute;inset:9%;border:4px solid #ffd052;box-shadow:inset 0 0 0 2px rgba(255,255,255,.2)}
+.hero-card-frame::before,.hero-card-frame::after{content:"";position:absolute;width:14px;height:14px;border:3px solid #fff;left:50%;transform:translateX(-50%) rotate(45deg)}
+.hero-card-frame::before{top:10%}.hero-card-frame::after{bottom:10%}
+.hero-card-jester{width:52%;height:52%;object-fit:contain;image-rendering:pixelated;z-index:2;filter:drop-shadow(5px 6px 0 rgba(45,20,91,.28))}
+html[data-theme="dark"] .hero-card-front{background:linear-gradient(145deg,#8d4ef0,#411270);box-shadow:inset 0 0 0 3px #bb78ff,0 0 24px rgba(206,77,255,.22)}
+@media (max-width:700px){
+ .icon-btn{padding:4px}.icon-btn img{width:92%;height:92%}
+ .hero-card-stack{width:clamp(150px,42vw,205px)}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
   <section id="homeScreen" class="page home active">
     <header class="brandbar">
-      <div class="brand"><img class="brand-icon" src="assets/branding/jester-mascot.png" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">小姐牌</span><span class="version">V3.4.1</span></div></div>
+      <div class="brand"><img class="brand-icon" src="assets/branding/jester-mascot.webp" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">小姐牌</span><span class="version">V3.4.2</span></div></div>
       <div class="brand-right"><span style="color:#8f79bd;font-size:12px">PIXEL FANTASY PARTY TOOL</span></div>
     </header>
     <div class="game-frame home-frame">
       <i class="corner-gem cg1"></i><i class="corner-gem cg2"></i><i class="corner-gem cg3"></i><i class="corner-gem cg4"></i>
       <div class="home-layout">
         <header class="home-head">
-          <button id="diceEntry" class="pixel-btn icon-btn mode-btn" aria-label="大话骰"><img src="assets/icons-v34/dice.svg" alt=""></button>
+          <button id="diceEntry" class="pixel-btn icon-btn mode-btn" aria-label="大话骰"><img src="assets/icons-v342/dice.webp" alt=""></button>
           <div class="theme">
-            <button id="themeLight" class="pixel-btn icon-btn" aria-label="浅色模式"><img src="assets/icons-v34/sun.svg" alt=""></button>
-            <button id="themeDark" class="pixel-btn icon-btn" aria-label="深色模式"><img src="assets/icons-v34/moon.svg" alt=""></button>
+            <button id="themeLight" class="pixel-btn icon-btn" aria-label="浅色模式"><img src="assets/icons-v342/sun.webp" alt=""></button>
+            <button id="themeDark" class="pixel-btn icon-btn" aria-label="深色模式"><img src="assets/icons-v342/moon.webp" alt=""></button>
           </div>
         </header>
         <main class="hero">
-          <div class="hero-shell"><img class="joker-mark" src="assets/branding/jester-mascot.png" alt="小丑"><div class="logo-sub">PIXEL PARTY TOOL</div>
-          <h1 class="logo-title">小姐牌</h1>
-          <div class="suits"><span class="red">♥</span><span>♠</span><span class="red">♦</span><span>♣</span></div>
-          <div class="deck-stack"><div class="deck-card"></div></div>
+          <div class="hero-card-stack" aria-label="小丑牌">
+            <div class="hero-card-back hero-card-back-3"></div>
+            <div class="hero-card-back hero-card-back-2"></div>
+            <div class="hero-card-front">
+              <span class="hero-card-frame"></span>
+              <img class="hero-card-jester" src="assets/branding/jester-mascot.webp" alt="小丑">
+            </div>
           </div>
         </main>
         <div class="home-actions">
           <button id="startBtn" class="pixel-btn primary">开始游戏</button>
           <button id="continueBtn" class="pixel-btn">继续游戏</button>
           <div class="home-tools">
-            <button id="settingsBtn" class="pixel-btn icon-btn" aria-label="设置"><img src="assets/icons-v34/settings.svg" alt=""></button>
-            <button id="resetBtn" class="pixel-btn icon-btn" aria-label="重置"><img src="assets/icons-v34/reset.svg" alt=""></button>
+            <button id="resetBtn" class="pixel-btn icon-btn" aria-label="重置"><img src="assets/icons-v342/reset.webp" alt=""></button>
           </div>
         </div>
       </div>
@@ -193,21 +220,21 @@ html[data-theme="dark"] .panel,html[data-theme="dark"] .modal-box{background:lin
 
   <section id="cardScreen" class="page">
     <header class="brandbar">
-      <div class="brand"><img class="brand-icon" src="assets/branding/jester-mascot.png" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">小姐牌</span><span class="version">V3.4.1</span></div></div>
+      <div class="brand"><img class="brand-icon" src="assets/branding/jester-mascot.webp" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">小姐牌</span><span class="version">V3.4.2</span></div></div>
       <div class="brand-right"><span style="color:#8f79bd;font-size:12px">CARD MODE</span></div>
     </header>
     <div class="game-frame card-frame">
       <i class="corner-gem cg1"></i><i class="corner-gem cg2"></i><i class="corner-gem cg3"></i><i class="corner-gem cg4"></i>
       <header class="topbar">
         <div class="left">
-          <button id="historyBtn" class="pixel-btn icon-btn" aria-label="历史记录"><img src="assets/icons-v34/history.svg" alt=""></button>
-          <button id="homeBtn" class="pixel-btn icon-btn" aria-label="主页"><img src="assets/icons-v34/home.svg" alt=""></button>
+          <button id="historyBtn" class="pixel-btn icon-btn" aria-label="历史记录"><img src="assets/icons-v342/history.webp" alt=""></button>
+          <button id="homeBtn" class="pixel-btn icon-btn" aria-label="主页"><img src="assets/icons-v342/home.webp" alt=""></button>
         </div>
-        <div class="count-panel"><img class="deck-mini" src="assets/icons-v34/deck.svg" alt=""><div><span id="remainingCount">52</span><small class="status-label">剩余牌数</small></div></div>
+        <div class="count-panel"><span class="deck-mini deck-mini-pixel" aria-hidden="true"></span><div><span id="remainingCount">52</span><small class="status-label">剩余牌数</small></div></div>
         <div class="right">
-          <button id="kBtn" class="pixel-btn icon-btn" aria-label="K规则"><img src="assets/icons-v34/k.svg" alt=""></button>
-          <button id="ladyBtn" class="pixel-btn icon-btn" aria-label="当前小姐"><img src="assets/icons-v34/crown.svg" alt=""></button>
-          <button id="stashBtn" class="pixel-btn icon-btn" aria-label="存卡"><img src="assets/icons-v34/stash.svg" alt=""></button>
+          <button id="kBtn" class="pixel-btn icon-btn" aria-label="K规则"><img src="assets/icons-v342/k.webp" alt=""></button>
+          <button id="ladyBtn" class="pixel-btn icon-btn" aria-label="当前小姐"><img src="assets/icons-v342/lady.webp" alt=""></button>
+          <button id="stashBtn" class="pixel-btn icon-btn" aria-label="存卡"><img src="assets/icons-v342/stash.webp" alt=""></button>
         </div>
       </header>
       <main class="game-content">
@@ -223,13 +250,13 @@ html[data-theme="dark"] .panel,html[data-theme="dark"] .modal-box{background:lin
 
   <section id="diceScreen" class="page dice-page">
     <header class="brandbar">
-      <div class="brand"><img class="brand-icon" src="assets/branding/jester-mascot.png" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">大话骰</span><span class="version">V3.4.1</span></div></div>
+      <div class="brand"><img class="brand-icon" src="assets/branding/jester-mascot.webp" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">大话骰</span><span class="version">V3.4.2</span></div></div>
       <div class="brand-right"><span style="color:#8f79bd;font-size:12px">DICE MODE</span></div>
     </header>
     <div class="game-frame dice-frame">
       <i class="corner-gem cg1"></i><i class="corner-gem cg2"></i><i class="corner-gem cg3"></i><i class="corner-gem cg4"></i>
-      <header class="topbar"><div class="left"><button id="diceHome" class="pixel-btn icon-btn" aria-label="主页"><img src="assets/icons-v34/home.svg" alt=""></button></div><div class="count-panel"><img src="assets/icons-v34/dice.svg" alt="" style="width:34px;height:34px"><span>大话骰</span></div><div></div></header>
-      <main class="dice-content"><div id="diceStage" class="dice-stage"><img id="diceCup" class="dice-cup" src="assets/dice-cup.png" alt="骰盅"><div id="diceRow" class="dice-row"></div></div><button id="rerollBtn" class="pixel-btn primary icon-btn" aria-label="重新摇骰"><img src="assets/icons-v34/reroll.svg" alt=""></button></main>
+      <header class="topbar"><div class="left"><button id="diceHome" class="pixel-btn icon-btn" aria-label="主页"><img src="assets/icons-v342/home.webp" alt=""></button></div><div class="count-panel"><img src="assets/icons-v342/dice.webp" alt="" style="width:34px;height:34px"><span>大话骰</span></div><div></div></header>
+      <main class="dice-content"><div id="diceStage" class="dice-stage"><img id="diceCup" class="dice-cup" src="assets/dice-cup.png" alt="骰盅"><div id="diceRow" class="dice-row"></div></div><button id="rerollBtn" class="pixel-btn primary icon-btn" aria-label="重新摇骰"><img src="assets/icons-v342/reroll.webp" alt=""></button></main>
     </div>
   </section>
 </div>
@@ -281,9 +308,8 @@ html[data-theme="dark"] .panel,html[data-theme="dark"] .modal-box{background:lin
   function infoModal(t,x){modalBase(t,x);$('modalActions').append(btn('知道了','pixel-btn mini-btn',closeModal))}
   function confirmModal(t,x,yes,label='确认'){modalBase(t,x);$('modalActions').append(btn('取消','pixel-btn mini-btn',closeModal),btn(label,'pixel-btn mini-btn',()=>{closeModal();yes()}))}
   function inputModal(t,x,p,max,done){modalBase(t,x);const i=document.createElement('input');i.className='field';i.placeholder=p;i.maxLength=max;$('modalInput').append(i);$('modalActions').append(btn('取消','pixel-btn mini-btn',closeModal),btn('确认','pixel-btn mini-btn',()=>{const v=i.value.trim();if(!v){i.focus();return}closeModal();done(v)}));setTimeout(()=>i.focus(),60)}
-  function openSettings(){$('panelTitle').textContent='⚙';$('panelBody').innerHTML=`<div class="settings-row"><span>音效</span><button id="soundToggle" class="toggle ${settings.sound?'on':''}"></button></div><div class="settings-row"><span>震动</span><button id="hapticToggle" class="toggle ${settings.haptic?'on':''}"></button></div>`;$('panelOverlay').classList.add('open');$('soundToggle').onclick=()=>{settings.sound=!settings.sound;saveSettings();$('soundToggle').classList.toggle('on',settings.sound)};$('hapticToggle').onclick=()=>{settings.haptic=!settings.haptic;saveSettings();$('hapticToggle').classList.toggle('on',settings.haptic);buzz(30)}}
   function reset(){if(!state.started){infoModal('没有进行中的小姐牌','开始一局之后，这里可以重置。');return}confirmModal('重置小姐牌','牌堆、小姐、K、抽牌记录和存卡都会清空。',()=>{state=defaults();localStorage.removeItem(KEY);refreshHome();show(home)},'重置')}
-  $('startBtn').onclick=startGame;$('continueBtn').onclick=()=>{renderCard();updateCount();show(game)};$('diceEntry').onclick=enterDice;$('themeLight').onclick=()=>{settings.theme='light';applyTheme();saveSettings()};$('themeDark').onclick=()=>{settings.theme='dark';applyTheme();saveSettings()};$('settingsBtn').onclick=openSettings;$('resetBtn').onclick=reset;
+  $('startBtn').onclick=startGame;$('continueBtn').onclick=()=>{renderCard();updateCount();show(game)};$('diceEntry').onclick=enterDice;$('themeLight').onclick=()=>{settings.theme='light';applyTheme();saveSettings()};$('themeDark').onclick=()=>{settings.theme='dark';applyTheme();saveSettings()};$('resetBtn').onclick=reset;
   $('homeBtn').onclick=()=>show(home);$('historyBtn').onclick=()=>openPanel('history');$('kBtn').onclick=()=>openPanel('k');$('ladyBtn').onclick=()=>openPanel('lady');$('stashBtn').onclick=()=>openPanel('stash');$('stashCurrent').onclick=stashCurrent;$('nextBtn').onclick=drawNext;card.onclick=flip;card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}};
   $('diceHome').onclick=()=>show(home);$('diceCup').onclick=toggleCup;$('rerollBtn').onclick=reroll;
   $('panelClose').onclick=()=>$('panelOverlay').classList.remove('open');$('panelOverlay').onclick=e=>{if(e.target===$('panelOverlay'))$('panelOverlay').classList.remove('open')};
