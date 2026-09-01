@@ -1,6 +1,9 @@
-ZH JOKER TABLE V3.3
-- mobile Safari card-flip bleed fixed
-- joker start card has no rank/suit corners
-- new transparent SVG pixel icons
-- new deep pixel backgrounds for light/dark themes
-- responsive desktop/mobile layout retained
+ZH JOKER TABLE V3.4
+
+- 统一桌面端与移动端像素游戏视觉系统
+- 全面重绘功能图标为 V3.4 像素 SVG
+- 重做首页主视觉、边框、按钮与交互反馈
+- 游戏页顶部升级为统一像素 HUD
+- 优化桌面端大屏布局与移动端空间比例
+- 保留原 V3.3 游戏逻辑、翻牌、记录、存卡、小姐、K 规则与大话骰功能
+- README 新增项目介绍、在线网址与 V3.4 设计预览
