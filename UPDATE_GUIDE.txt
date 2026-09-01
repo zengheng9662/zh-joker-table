@@ -1,0 +1,20 @@
+ZH JOKER TABLE V4.3 手动更新
+
+需要替换：
+1. index.html
+2. VERSION.txt
+
+不需要动：
+- assets/
+- README.md
+- 其他现有文件
+
+GitHub 网页端最简单操作：
+1. 打开 zh-joker-table 仓库。
+2. 打开 index.html，选择编辑或删除后重新上传本包的 index.html。
+3. 同样替换 VERSION.txt。
+4. Commit changes。
+5. 等待 GitHub Pages 自动刷新。
+
+建议：
+替换前可以把当前 index.html 下载一份留作 V3.4.3 备份。
