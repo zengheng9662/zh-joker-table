@@ -1,10 +1,10 @@
-# ZH JOKER TABLE V3.4
+# ZH JOKER TABLE V3.4.1
 
 一款从真实聚会需求出发制作的轻量级网页小游戏，整合「小姐牌」与「大话骰」两种常用玩法。
 
 ## 🔗 在线体验
 
-- Website: https://zengheng9662.github.io/
+- Website: https://zengheng9662.github.io/zh-joker-table/
 - Repository: https://github.com/zengheng9662/zh-joker-table
 
 ## 🎮 项目介绍
@@ -22,7 +22,6 @@
 ## ✦ 核心功能
 
 ### 🃏 小姐牌
-
 - 随机抽取 52 张扑克牌
 - 点击牌面翻转查看对应规则
 - 自动记录抽牌历史与剩余牌数
@@ -30,62 +29,50 @@
 - 支持继续上一局与重置游戏
 
 ### 🎲 大话骰
-
 - 一次生成 5 枚骰子
 - 点击骰盅开合查看结果
 - 支持重新摇骰
 - 仅 1、4 点使用红色，其余点数使用黑色
 - 与小姐牌共用统一的像素游戏视觉系统
 
-## ✦ V3.4 视觉升级
+## ✦ V3.4.1 这次真正改了什么
 
-V3.4 重点不再是增加功能，而是重新统一网页的视觉语言。
+这次更新的重点不是只改 README，也不是只换几枚图标，而是把之前确认过的像素主视觉真正落到了网页里。
 
-- 全部工具图标升级为统一的像素风 SVG 图标
-- 桌面端与移动端使用同一套按钮、描边、高光与硬阴影规则
-- 首页加入完整的像素游戏标题场景与装饰边框
-- 游戏页顶部功能区升级为统一 HUD 状态栏
-- 卡牌、按钮、背景纹理与功能图标统一到同一套紫粉像素幻想风格
-- 桌面端不再只是放大手机布局，重新优化大屏留白、内容尺度与整体沉浸感
-- 增强 hover、按压、发光等交互反馈
-- 保留浅色 / 深色主题，但让两种模式保持同一套视觉语言
-
-## 🖼️ V3.4 设计预览
-
-### Desktop
-
-![V3.4 Desktop Home](preview/v34-desktop-home.png)
-
-![V3.4 Desktop Card](preview/v34-desktop-card.png)
-
-### Mobile
-
-![V3.4 Mobile Home](preview/v34-mobile-home.png)
-
-![V3.4 Mobile Card](preview/v34-mobile-card.png)
+- 新增首页浅色像素主视觉背景资源
+- 新增卡牌 / 骰子页深色像素主视觉背景资源
+- 新增独立透明底小丑 mascot 资源，并实装到标题区与页头
+- 首页、抽牌页、骰子页统一成同一套像素幻想风视觉语言
+- 更明显地拉开首页与游戏内页的场景层次
+- 保留原有游戏逻辑与素材引用，不改动核心玩法
+- 统一引用 `assets/icons-v34/`，便于删除旧版 `icons-v33/`
 
 ## 📁 文件说明
 
 ```text
-ZH_JOKER_TABLE_V3.4/
-├─ index.html                 # V3.4 页面与交互代码
-├─ README.md                  # 项目介绍
-├─ VERSION.txt                # 版本记录
-├─ 替换说明.txt               # GitHub Desktop 替换说明
+ZH_JOKER_TABLE_V3.4.1/
+├─ index.html
+├─ README.md
+├─ VERSION.txt
+├─ 替换说明.txt
 ├─ assets/
-│  └─ icons-v34/              # V3.4 全新像素 SVG 图标
-└─ preview/                   # V3.4 视觉设计预览图
+│  ├─ backgrounds/
+│  │  ├─ v341-home-light.png
+│  │  └─ v341-game-dark.png
+│  ├─ branding/
+│  │  └─ jester-mascot.png
+│  └─ icons-v34/
+└─ preview/
 ```
 
-> V3.4 继续复用原仓库中的 `assets/cards/`、`assets/dice-cup.png` 等游戏素材，因此更新时请保留原有 assets 文件，并将本包中的 `icons-v34` 文件夹复制进去。
+> V3.4.1 继续复用原仓库中的 `assets/cards/`、`assets/dice-cup.png` 等游戏素材，因此替换时请保留原有这些文件。
 
 ## 🚀 Deployment
 
 项目使用 GitHub Pages 部署。
 
-更新完成后，将文件提交至 `main` 分支即可。若 Pages 已设置为 `main / root`，网址不会因为后续更新页面内容而改变。
+如果 Pages 已设置为 **main / root**，更新仓库文件后，项目网址依旧是：
 
----
+**https://zengheng9662.github.io/zh-joker-table/**
 
-**ZH JOKER TABLE**  
-A tiny party game made for real nights out.
+不会因为你更新内容而改变。

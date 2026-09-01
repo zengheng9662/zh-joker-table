@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#160b30" />
-<title>小姐牌 · ZH JOKER TABLE V3.4</title>
+<title>小姐牌 · ZH JOKER TABLE V3.4.1</title>
 <style>
 :root{
   --night:#120827;--night-2:#1a0b38;--night-3:#28104e;--ink:#291d56;--muted:#81769d;
@@ -103,16 +103,66 @@ html[data-theme="dark"] .logo-title{color:#ffd253;text-shadow:3px 0 #35115b,-3px
 }
 @media (max-width:420px){.brand-cn{display:none}.game-frame{padding:10px}.topbar .icon-btn{width:41px;height:41px;padding:5px}.count-panel{font-size:19px;gap:6px}.deck-mini{width:25px;height:25px}.logo-title{font-size:62px}.joker-mark{width:61px;height:61px}.deck-stack{width:98px}.home-actions>.pixel-btn{min-height:52px}.card-wrap,#nextBtn{width:min(82vw,325px)}.dice-stage{height:63vh}.dice-cup{width:71%}}
 @media (max-height:720px) and (max-width:899px){.brandbar{min-height:50px}.brand img{width:32px;height:32px}.game-frame{min-height:calc(100dvh - 70px)}.joker-mark{width:48px;height:48px}.logo-title{font-size:52px}.suits{font-size:16px}.deck-stack{width:76px}.home-actions>.pixel-btn{min-height:44px}.card-wrap{height:min(56vh,430px);width:auto;aspect-ratio:5/7}#nextBtn{min-height:48px}.dice-stage{height:59vh;min-height:340px}}
+
+/* V3.4.1 visual asset layer */
+:root{--home-art:url("assets/backgrounds/v341-home-light.png");--play-art:url("assets/backgrounds/v341-game-dark.png")}
+html[data-theme="dark"]{--home-art:url("assets/backgrounds/v341-game-dark.png");--play-art:url("assets/backgrounds/v341-game-dark.png")}
+.app{background:linear-gradient(rgba(28,10,58,.97),rgba(12,5,28,.97)),repeating-linear-gradient(0deg,transparent 0 29px,rgba(180,97,255,.06) 30px 32px),repeating-linear-gradient(90deg,transparent 0 55px,rgba(180,97,255,.05) 56px 58px)}
+.game-frame{background:transparent;border:none;box-shadow:none;padding:clamp(16px,2.2vw,26px);overflow:hidden}
+.game-frame::before{content:"";position:absolute;inset:0;background-size:100% 100%;background-position:center;background-repeat:no-repeat;z-index:-2}
+.home-frame::before{background-image:var(--home-art)}
+.card-frame::before,.dice-frame::before{background-image:var(--play-art)}
+.game-frame::after,.corner-gem{display:none}
+.brandbar{background:rgba(18,8,40,.92);backdrop-filter:blur(3px)}
+.brand-icon{width:48px!important;height:48px!important}
+.brand-right span{color:#af95e8!important;font-size:12px!important;letter-spacing:.08em;font-weight:900}
+.hero{padding:18px 10px 10px}
+.hero-shell{width:min(100%,520px);display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 18px 18px;background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.10));border:3px solid rgba(129,91,219,.35);box-shadow:inset 0 0 0 2px rgba(255,255,255,.55),0 14px 32px rgba(88,54,148,.16);border-radius:8px}
+html[data-theme="dark"] .hero-shell{background:linear-gradient(180deg,rgba(15,7,35,.44),rgba(15,7,35,.22));border-color:rgba(196,89,255,.35);box-shadow:inset 0 0 0 2px rgba(255,255,255,.08),0 0 24px rgba(208,91,255,.18)}
+.logo-sub{font-size:12px;font-weight:900;letter-spacing:.18em;color:#8f79bd}
+html[data-theme="dark"] .logo-sub{color:#ff9ed0}
+.joker-mark{width:clamp(86px,9vw,116px);height:clamp(86px,9vw,116px);filter:drop-shadow(6px 8px 0 rgba(41,18,79,.14))}
+.logo-title{font-size:clamp(68px,10vw,136px)}
+.suits{margin-top:-2px}
+.home-actions{width:min(100%,480px)}
+.topbar .pixel-btn,.home-head .pixel-btn,.home-tools .pixel-btn,.count-panel{backdrop-filter:blur(3px)}
+.count-panel{background:rgba(20,9,41,.90);border-color:#7343cc;box-shadow:inset 0 0 0 2px #31155e,0 6px 0 #080311,0 0 18px rgba(203,84,255,.16)}
+.card-frame .topbar,.dice-frame .topbar{margin-bottom:8px}
+.card-wrap{filter:drop-shadow(0 14px 28px rgba(18,5,35,.24))}
+.dice-stage{background:linear-gradient(180deg,rgba(7,3,19,.46),rgba(18,7,40,.22));border:3px solid rgba(214,104,255,.42);box-shadow:inset 0 0 0 2px rgba(255,255,255,.04),0 0 24px rgba(199,79,255,.16)}
+html[data-theme="dark"] .dice-stage{background:linear-gradient(180deg,rgba(7,3,19,.56),rgba(18,7,40,.3))}
+.panel,.modal-box{background:linear-gradient(180deg,#fff8ee,#f5eefe)}
+html[data-theme="dark"] .panel,html[data-theme="dark"] .modal-box{background:linear-gradient(180deg,#24113f,#170d2c)}
+@media (min-width:900px){
+  .home .game-frame{min-height:calc(100dvh - 110px)}
+  .home-layout{grid-template-rows:auto 1fr auto}
+  .hero-shell{padding:26px 26px 22px}
+}
+@media (max-width:700px){
+  .page{padding-left:10px;padding-right:10px;gap:10px}
+  .brandbar{min-height:58px;padding:8px 10px 8px 12px}
+  .brand-icon{width:40px!important;height:40px!important}
+  .brand-copy{gap:6px}
+  .brand-name{font-size:14px}
+  .brand-cn{font-size:12px}
+  .version{font-size:11px;padding:3px 6px}
+  .brand-right{display:none}
+  .game-frame{padding:12px}
+  .hero-shell{padding:16px 14px 14px}
+  .logo-title{font-size:58px}
+  .home-actions>.pixel-btn{min-height:58px;font-size:21px}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
   <section id="homeScreen" class="page home active">
     <header class="brandbar">
-      <div class="brand"><img src="assets/cards/joker.png" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">小姐牌</span><span class="version">V3.4</span></div></div>
-      <div class="brand-right"><span style="color:#8f79bd;font-size:12px">PIXEL PARTY TOOL</span></div>
+      <div class="brand"><img class="brand-icon" src="assets/branding/jester-mascot.png" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">小姐牌</span><span class="version">V3.4.1</span></div></div>
+      <div class="brand-right"><span style="color:#8f79bd;font-size:12px">PIXEL FANTASY PARTY TOOL</span></div>
     </header>
-    <div class="game-frame">
+    <div class="game-frame home-frame">
       <i class="corner-gem cg1"></i><i class="corner-gem cg2"></i><i class="corner-gem cg3"></i><i class="corner-gem cg4"></i>
       <div class="home-layout">
         <header class="home-head">
@@ -123,10 +173,11 @@ html[data-theme="dark"] .logo-title{color:#ffd253;text-shadow:3px 0 #35115b,-3px
           </div>
         </header>
         <main class="hero">
-          <img class="joker-mark" src="assets/cards/joker.png" alt="小丑">
+          <div class="hero-shell"><img class="joker-mark" src="assets/branding/jester-mascot.png" alt="小丑"><div class="logo-sub">PIXEL PARTY TOOL</div>
           <h1 class="logo-title">小姐牌</h1>
           <div class="suits"><span class="red">♥</span><span>♠</span><span class="red">♦</span><span>♣</span></div>
           <div class="deck-stack"><div class="deck-card"></div></div>
+          </div>
         </main>
         <div class="home-actions">
           <button id="startBtn" class="pixel-btn primary">开始游戏</button>
@@ -142,10 +193,10 @@ html[data-theme="dark"] .logo-title{color:#ffd253;text-shadow:3px 0 #35115b,-3px
 
   <section id="cardScreen" class="page">
     <header class="brandbar">
-      <div class="brand"><img src="assets/cards/joker.png" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">小姐牌</span><span class="version">V3.4</span></div></div>
+      <div class="brand"><img class="brand-icon" src="assets/branding/jester-mascot.png" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">小姐牌</span><span class="version">V3.4.1</span></div></div>
       <div class="brand-right"><span style="color:#8f79bd;font-size:12px">CARD MODE</span></div>
     </header>
-    <div class="game-frame">
+    <div class="game-frame card-frame">
       <i class="corner-gem cg1"></i><i class="corner-gem cg2"></i><i class="corner-gem cg3"></i><i class="corner-gem cg4"></i>
       <header class="topbar">
         <div class="left">
@@ -172,10 +223,10 @@ html[data-theme="dark"] .logo-title{color:#ffd253;text-shadow:3px 0 #35115b,-3px
 
   <section id="diceScreen" class="page dice-page">
     <header class="brandbar">
-      <div class="brand"><img src="assets/cards/joker.png" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">大话骰</span><span class="version">V3.4</span></div></div>
+      <div class="brand"><img class="brand-icon" src="assets/branding/jester-mascot.png" alt=""><div class="brand-copy"><span class="brand-name">ZH JOKER TABLE</span><span class="brand-cn">大话骰</span><span class="version">V3.4.1</span></div></div>
       <div class="brand-right"><span style="color:#8f79bd;font-size:12px">DICE MODE</span></div>
     </header>
-    <div class="game-frame">
+    <div class="game-frame dice-frame">
       <i class="corner-gem cg1"></i><i class="corner-gem cg2"></i><i class="corner-gem cg3"></i><i class="corner-gem cg4"></i>
       <header class="topbar"><div class="left"><button id="diceHome" class="pixel-btn icon-btn" aria-label="主页"><img src="assets/icons-v34/home.svg" alt=""></button></div><div class="count-panel"><img src="assets/icons-v34/dice.svg" alt="" style="width:34px;height:34px"><span>大话骰</span></div><div></div></header>
       <main class="dice-content"><div id="diceStage" class="dice-stage"><img id="diceCup" class="dice-cup" src="assets/dice-cup.png" alt="骰盅"><div id="diceRow" class="dice-row"></div></div><button id="rerollBtn" class="pixel-btn primary icon-btn" aria-label="重新摇骰"><img src="assets/icons-v34/reroll.svg" alt=""></button></main>
