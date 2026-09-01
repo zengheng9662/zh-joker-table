@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#f7f4ff" />
-<title>小姐牌 · ZH JOKER TABLE V3.1</title>
+<title>小姐牌 · ZH JOKER TABLE V3.2</title>
 <style>
 :root{
   --bg:#f7f4ff;--panel:#ffffff;--ink:#2e2755;--muted:#8d86ad;--line:#7565c6;
@@ -87,9 +87,68 @@ html[data-theme="dark"] .logo-title{color:#ffd139;text-shadow:3px 3px 0 #3a153e,
 /* overlays */
 .overlay,.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(7px);display:none;align-items:flex-start;justify-content:center;padding:80px 16px 24px;z-index:30}.overlay.open,.modal.open{display:flex}.modal{align-items:center;padding:20px}.panel,.modal-box{width:min(430px,100%);background:var(--panel);border:3px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:20px;max-height:calc(100dvh - 110px);overflow:auto}.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.panel-title{font-size:21px;font-weight:950}.close-btn{border:0;background:transparent;font-size:28px}.status-card,.history-item,.stash-item{border:2px solid var(--soft);padding:12px;border-radius:8px}.status-main{font-size:24px;font-weight:950;margin-top:6px}.status-sub{font-size:12px;color:var(--muted);margin-top:5px}.history-list,.stash-list{display:grid;gap:9px;margin-top:12px}.history-item{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:8px}.history-name{font-size:12px;color:var(--muted)}.stash-item{display:grid;grid-template-columns:55px 1fr auto;gap:10px;align-items:center}.stash-thumb{width:48px;height:60px;background:var(--card);border:2px solid #222;display:grid;place-items:center;overflow:hidden}.stash-thumb img{max-width:90%;max-height:90%}.stash-item button{height:38px;border:2px solid var(--line);background:var(--ink);color:var(--bg);font-weight:800}.empty{text-align:center;color:var(--muted);padding:24px}.modal-box h3{margin:0 0 9px}.modal-box p{color:var(--muted);line-height:1.6}.field{width:100%;height:48px;border:2px solid var(--line);background:var(--bg);padding:0 12px;border-radius:6px}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:15px}.mini-btn{min-height:42px;padding:0 14px}.settings-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--soft)}.toggle{width:50px;height:28px;border:2px solid var(--line);background:var(--bg);position:relative}.toggle::after{content:"";position:absolute;width:18px;height:18px;left:4px;top:3px;background:var(--muted);transition:.18s}.toggle.on::after{left:24px;background:var(--accent)}
 
-@media (min-width:720px){.page{padding-left:26px;padding-right:26px}.card-wrap,#nextBtn{width:350px}.dice-stage{height:min(68vh,650px)}.logo-title{font-size:90px}}
-@media (max-width:420px){.page{padding-left:12px;padding-right:12px}.frame{inset:5px}.icon-btn{width:44px;height:44px}.topbar{gap:6px}.topbar .left,.topbar .right{gap:5px}.logo-title{font-size:64px}.joker-mark{width:70px;height:70px}.deck-stack{width:105px;height:140px}.home-actions .pixel-btn{min-height:56px;font-size:20px}.game-content{gap:12px}.card-wrap,#nextBtn{width:min(78vw,330px)}.dice-stage{width:94vw;min-height:390px;height:61vh}.dice-row{gap:6px}.dice-cup{width:70%}}
-@media (max-height:720px){.hero{gap:4px}.joker-mark{width:58px;height:58px}.logo-title{font-size:56px}.suits{font-size:18px}.deck-stack{width:90px;height:118px}.home-actions .pixel-btn{min-height:48px}.game-content{padding-top:8px;gap:10px}.card-wrap{height:min(58vh,460px);width:auto;aspect-ratio:5/7}.dice-stage{height:62vh;min-height:360px}.dice-cup{width:58%}}
+/* responsive breakpoints */
+@media (min-width:720px){
+  .page{padding-left:28px;padding-right:28px}
+  .card-wrap,#nextBtn{width:360px}
+  .dice-stage{height:min(68vh,650px)}
+  .logo-title{font-size:90px}
+}
+
+/* real desktop layout: no phone-width shell */
+@media (min-width:900px){
+  body{overflow:auto}
+  .app{min-height:100dvh;padding:18px 24px;align-items:stretch}
+  .page{width:min(calc(100vw - 48px),1180px);min-height:calc(100dvh - 36px);margin:0 auto;padding:28px 42px 34px;background:color-mix(in srgb,var(--panel) 68%,transparent);border-radius:34px;overflow:hidden}
+  .frame{inset:12px;border-radius:30px;box-shadow:inset 0 0 0 8px color-mix(in srgb,var(--soft) 40%,transparent)}
+  .icon-btn{width:54px;height:54px}.icon-btn img{width:31px;height:31px}
+  .topbar{margin:10px 12px 0;gap:18px}.topbar .left,.topbar .right{gap:12px}.topbar-center{font-size:27px;gap:11px}
+
+  .home.active{display:grid;grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto 1fr;column-gap:72px;align-items:center}
+  .home-head{grid-column:1/-1;grid-row:1}
+  .hero{grid-column:1;grid-row:2;padding:28px 20px 36px;justify-content:center;min-height:560px}
+  .joker-mark{width:102px;height:102px}
+  .logo-title{font-size:112px}
+  .suits{font-size:28px;gap:20px}
+  .deck-stack{width:158px;height:208px;margin-top:12px}
+  .home-actions{grid-column:2;grid-row:2;width:100%;align-self:center;gap:16px;padding-right:12px}
+  .home-actions .pixel-btn{min-height:70px;font-size:24px}
+  .home-tools{margin-top:8px}
+
+  #cardScreen.active{display:grid;grid-template-rows:auto 1fr}
+  #cardScreen .topbar{grid-row:1}
+  #cardScreen .game-content{grid-row:2;width:100%;padding:24px 0 28px;justify-content:center;gap:20px}
+  .card-wrap{width:390px;max-width:390px}
+  #nextBtn{width:390px;min-height:64px;font-size:23px}
+  .card-face{border-radius:17px}
+
+  .dice-page.active{display:grid;grid-template-rows:auto 1fr}
+  .dice-page .topbar{grid-row:1}
+  .dice-content{grid-row:2;padding:18px 0 24px;gap:22px}
+  .dice-stage{width:min(76vw,760px);height:min(70vh,610px);min-height:520px;border-radius:28px}
+  .dice-cup{width:52%;top:9%;max-height:60%}
+  .dice-stage.open .dice-cup{top:-5%;transform:translateX(-50%) scale(.76)}
+  .dice-row{left:9%;right:9%;bottom:8%;gap:18px}
+  #rerollBtn{width:72px;height:72px;font-size:34px}
+}
+
+@media (min-width:1200px){
+  .page{width:min(calc(100vw - 72px),1280px);padding-left:54px;padding-right:54px}
+  .home.active{grid-template-columns:minmax(0,1fr) 410px;column-gap:92px}
+  .hero{min-height:620px}
+  .logo-title{font-size:126px}
+  .deck-stack{width:172px;height:224px}
+  .card-wrap{width:410px;max-width:410px}
+  #nextBtn{width:410px}
+  .dice-stage{width:790px;height:630px}
+}
+
+@media (max-width:420px){
+  .page{padding-left:12px;padding-right:12px}.frame{inset:5px}.icon-btn{width:44px;height:44px}.topbar{gap:6px}.topbar .left,.topbar .right{gap:5px}.logo-title{font-size:64px}.joker-mark{width:70px;height:70px}.deck-stack{width:105px;height:140px}.home-actions .pixel-btn{min-height:56px;font-size:20px}.game-content{gap:12px}.card-wrap,#nextBtn{width:min(78vw,330px)}.dice-stage{width:94vw;min-height:390px;height:61vh}.dice-row{gap:6px}.dice-cup{width:70%}
+}
+@media (max-height:720px) and (max-width:899px){
+  .hero{gap:4px}.joker-mark{width:58px;height:58px}.logo-title{font-size:56px}.suits{font-size:18px}.deck-stack{width:90px;height:118px}.home-actions .pixel-btn{min-height:48px}.game-content{padding-top:8px;gap:10px}.card-wrap{height:min(58vh,460px);width:auto;aspect-ratio:5/7}.dice-stage{height:62vh;min-height:360px}.dice-cup{width:58%}
+}
 </style>
 </head>
 <body>
@@ -188,10 +247,10 @@ html[data-theme="dark"] .logo-title{color:#ffd139;text-shadow:3px 3px 0 #3a153e,
   function buzz(ms=22){if(settings.haptic&&navigator.vibrate)navigator.vibrate(ms)}
   function esc(s=''){return String(s).replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
   function btn(t,c,fn){const b=document.createElement('button');b.className=c;b.textContent=t;b.onclick=fn;return b}
-  function artPath(rank){return `assets/cards/card-${String(rank).toLowerCase()}.png?v=31`}
+  function artPath(rank){return `assets/cards/card-${String(rank).toLowerCase()}.png?v=32`}
 
   function startGame(){const go=()=>{state=defaults();state.deck=makeDeck();state.started=true;state.awaitingDraw=true;renderCard();updateCount();save();show(game)};if(state.started&&(state.history.length||state.current))confirmModal('开始新游戏','当前小姐牌进度会被清空。',go,'开始');else go()}
-  function renderCard(){card.classList.toggle('flipped',!!state.flipped);if(state.awaitingDraw||!state.current){$('cornerTL').innerHTML='<span>J</span><span class="suit">★</span>';$('cornerBR').innerHTML='<span>J</span><span class="suit">★</span>';$('illustration').innerHTML='<img class="card-art" src="assets/cards/joker.png?v=31" alt="小丑牌">';$('ruleRank').textContent='JOKER';$('ruleName').textContent='准备抽牌';$('ruleText').textContent='点击这张小丑牌或下方按钮开始抽牌。';$('nextBtn').textContent='抽一张';$('stashOffer').classList.remove('show');return}const s=suit(state.current.suit),r=RULES[state.current.rank],cls=s.red?'red':'';const c=`<span>${state.current.rank}</span><span class="suit ${cls}">${s.symbol}</span>`;$('cornerTL').innerHTML=c;$('cornerBR').innerHTML=c;$('illustration').innerHTML=`<img class="card-art" src="${artPath(state.current.rank)}" alt="${esc(r.name)}">`;$('ruleRank').textContent=`${state.current.rank}${s.symbol}`;$('ruleName').textContent=r.name;$('ruleText').textContent=r.text;$('nextBtn').textContent='下一张';$('stashOffer').classList.toggle('show',STORABLE.has(state.current.rank)&&!state.stashedCurrent)}
+  function renderCard(){card.classList.toggle('flipped',!!state.flipped);if(state.awaitingDraw||!state.current){$('cornerTL').innerHTML='<span>J</span><span class="suit">★</span>';$('cornerBR').innerHTML='<span>J</span><span class="suit">★</span>';$('illustration').innerHTML='<img class="card-art" src="assets/cards/joker.png?v=32" alt="小丑牌">';$('ruleRank').textContent='JOKER';$('ruleName').textContent='准备抽牌';$('ruleText').textContent='点击这张小丑牌或下方按钮开始抽牌。';$('nextBtn').textContent='抽一张';$('stashOffer').classList.remove('show');return}const s=suit(state.current.suit),r=RULES[state.current.rank],cls=s.red?'red':'';const c=`<span>${state.current.rank}</span><span class="suit ${cls}">${s.symbol}</span>`;$('cornerTL').innerHTML=c;$('cornerBR').innerHTML=c;$('illustration').innerHTML=`<img class="card-art" src="${artPath(state.current.rank)}" alt="${esc(r.name)}">`;$('ruleRank').textContent=`${state.current.rank}${s.symbol}`;$('ruleName').textContent=r.name;$('ruleText').textContent=r.text;$('nextBtn').textContent='下一张';$('stashOffer').classList.toggle('show',STORABLE.has(state.current.rank)&&!state.stashedCurrent)}
   function updateCount(){$('remainingCount').textContent=state.deck.length}
   function drawNext(){if(drawing||!state.started)return;if(!state.deck.length){infoModal('本局结束','52 张牌已经全部抽完，可以打开左上角记录核对。');return}drawing=true;state.flipped=false;card.classList.remove('flipped');card.classList.add('dealing');const n=state.deck.pop();setTimeout(()=>{state.current=n;state.awaitingDraw=false;state.stashedCurrent=false;state.history.push({id:n.id,rank:n.rank,suit:n.suit,name:RULES[n.rank].name});renderCard();updateCount();save();card.classList.remove('dealing');drawing=false;beep(520);buzz();if(n.rank==='2')setTimeout(promptLady,220);if(n.rank==='K')setTimeout(promptK,220)},225)}
   function flip(){if(drawing||!state.started)return;if(state.awaitingDraw||!state.current){drawNext();return}state.flipped=!state.flipped;card.classList.toggle('flipped',state.flipped);save();beep(state.flipped?320:250)}
