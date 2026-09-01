@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+<meta name="theme-color" content="#f7f7f5" />
+<title>小姐牌 · ZH JOKER TABLE</title>
+<style>
+:root{
+  --bg:#f7f7f5;--panel:#ffffff;--text:#171717;--muted:#70706a;--line:#1a1a1a;--soft:#d8d8d2;
+  --accent:#6e5cff;--accent2:#ff5f8f;--gold:#e6af43;--red:#df4359;--shadow:0 18px 45px rgba(0,0,0,.12);
+  --card-paper:#fbfaf6;--black:#171717;--cup-dark:#1c2028;--cup-mid:#2c3340;--cup-hi:#434f61;
+}
+html[data-theme="dark"]{
+  --bg:#101114;--panel:#1a1c22;--text:#f7f7f3;--muted:#9a9ca4;--line:#f2f2ee;--soft:#32343d;
+  --accent:#8d7dff;--accent2:#ff6b9a;--gold:#ffc14f;--red:#ff667d;--shadow:0 18px 55px rgba(0,0,0,.42);
+  --card-paper:#f6f2e9;--black:#f2f2ee;--cup-dark:#101318;--cup-mid:#232a34;--cup-hi:#3c4656;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,"Cascadia Mono","Noto Sans SC","Microsoft YaHei",monospace}
+body{min-height:100dvh;overflow-x:hidden}
+button,input{font:inherit}button{cursor:pointer;color:inherit}
+.app{min-height:100dvh;position:relative;background:
+linear-gradient(90deg,transparent 49.5%,color-mix(in srgb,var(--soft) 26%,transparent) 50%,transparent 50.5%) 0 0/52px 52px,
+linear-gradient(transparent 49.5%,color-mix(in srgb,var(--soft) 20%,transparent) 50%,transparent 50.5%) 0 0/52px 52px,
+var(--bg)}
+.app::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 18%,color-mix(in srgb,var(--panel) 82%,transparent),transparent 54%);opacity:.62}
+.screen{display:none;min-height:100dvh;position:relative;z-index:1}.screen.active{display:flex}
+.icon-btn{width:46px;height:46px;border:2px solid var(--line);background:var(--panel);display:grid;place-items:center;border-radius:3px;box-shadow:3px 3px 0 color-mix(in srgb,var(--line) 16%,transparent);font-size:22px;line-height:1;transition:transform .12s ease,box-shadow .12s ease,background .2s ease}
+.icon-btn.small{width:42px;height:42px;font-size:19px}
+.icon-btn:active,.btn:active{transform:translate(2px,2px)}
+.icon-btn:active{box-shadow:1px 1px 0 color-mix(in srgb,var(--line) 16%,transparent)}
+.icon-btn.active{background:var(--text);color:var(--bg)}
+.btn{min-height:54px;border:2px solid var(--line);background:var(--panel);padding:0 24px;border-radius:3px;font-weight:900;letter-spacing:.04em;box-shadow:5px 5px 0 color-mix(in srgb,var(--line) 18%,transparent);transition:transform .12s ease,box-shadow .12s ease,background .2s ease}
+.btn:active{box-shadow:2px 2px 0 color-mix(in srgb,var(--line) 18%,transparent)}
+.btn.primary{background:var(--text);color:var(--bg)}.btn.accent{background:var(--accent);color:#fff}.btn.ghost{background:transparent}
+.home{align-items:center;justify-content:center;padding:28px 20px 24px}
+.home-inner{width:min(560px,100%);display:flex;flex-direction:column;align-items:center;gap:18px;position:relative}
+.home-top{width:100%;display:flex;justify-content:space-between;align-items:flex-start}
+.mode-dice{display:flex;flex-direction:column;align-items:center;gap:6px}
+.mode-dice .label{font-size:10px;color:var(--muted);letter-spacing:.16em;padding-left:.16em}
+.mode-dice .icon-btn{width:54px;height:54px;font-size:25px}
+.theme-switch{display:flex;gap:10px}
+.brand{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:-14px}
+.brand-mark{font-size:42px;filter:drop-shadow(4px 5px 0 rgba(0,0,0,.08))}
+.brand h1{margin:0;font-size:clamp(62px,16vw,100px);line-height:.92;letter-spacing:-.12em;font-family:"Microsoft YaHei",system-ui,sans-serif;font-weight:950;text-shadow:4px 4px 0 color-mix(in srgb,var(--accent) 28%,transparent)}
+.suits{display:flex;gap:16px;font-size:19px}.r{color:var(--red)}
+.deck-art{width:120px;height:90px;position:relative}.deck-art span{position:absolute;left:22px;top:-2px;width:78px;height:106px;background:var(--accent);border:3px solid var(--line);border-radius:4px;transform:rotate(7deg);box-shadow:8px 8px 0 color-mix(in srgb,var(--line) 22%,transparent)}
+.deck-art span::before{content:"🃏";position:absolute;inset:12px;border:2px dashed rgba(255,255,255,.65);display:grid;place-items:center;font-size:28px;color:#fff}
+.home-actions{width:min(380px,100%);display:grid;gap:12px}.home-actions .btn{width:100%;font-size:18px}
+.home-tools{display:flex;gap:16px}.version{font-size:10px;color:var(--muted);opacity:.75;letter-spacing:.14em}
+.game{flex-direction:column;align-items:center;padding:18px clamp(12px,3vw,30px) max(22px,env(safe-area-inset-bottom))}
+.game-top{width:min(920px,100%);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;min-height:54px}
+.top-left,.top-right{display:flex;gap:8px}.top-left{justify-self:start}.top-right{justify-self:end}
+.top-center{display:flex;align-items:center;justify-content:center;gap:10px;font-size:24px;font-weight:950}
+.mini-deck{width:30px;height:38px;background:var(--accent);border:2px solid var(--line);box-shadow:3px 3px 0 color-mix(in srgb,var(--line) 20%,transparent);display:grid;place-items:center;color:#fff;font-size:14px}
+.game-stage{width:min(920px,100%);flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:18px 0 12px}
+.card-wrap{perspective:1200px;width:min(66vw,340px);aspect-ratio:5/7;position:relative}
+.card{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .48s cubic-bezier(.2,.75,.25,1);cursor:pointer}
+.card.flipped{transform:rotateY(180deg)}
+.card.dealing{transform:rotateY(90deg) scale(.985)!important;transition:transform .22s ease}
+.card-face{position:absolute;inset:0;backface-visibility:hidden;background:var(--card-paper);border:3px solid #171717;border-radius:12px;box-shadow:var(--shadow);overflow:hidden;color:#111}
+.card-back{transform:rotateY(180deg);background:var(--panel);color:var(--text);display:flex;align-items:center;justify-content:center;padding:28px;text-align:center}
+.card-back::before{content:"";position:absolute;inset:10px;border:2px dashed var(--accent);opacity:.55}
+.card-back-inner{position:relative;z-index:1}.rule-rank{font-size:34px;font-weight:950;color:var(--accent);margin-bottom:8px}.rule-name{font-size:24px;font-weight:950;margin-bottom:18px}.rule-text{font-size:16px;line-height:1.7;color:var(--muted);max-width:250px;margin:auto}.tap-hint{font-size:11px;color:var(--muted);margin-top:18px;opacity:.72}
+.corner{position:absolute;display:flex;flex-direction:column;align-items:center;font-weight:950;font-size:30px;line-height:.9}.corner.tl{left:18px;top:18px}.corner.br{right:18px;bottom:18px;transform:rotate(180deg)}.corner .suit{font-size:27px;margin-top:8px}
+.card-illustration{position:absolute;inset:15% 12%;display:grid;place-items:center;text-align:center}
+.pixel-badge{min-width:148px;min-height:148px;display:grid;place-items:center;background:linear-gradient(180deg,#fffdf8,#efe9df);border:4px solid #181818;box-shadow:7px 7px 0 rgba(0,0,0,.14);border-radius:4px;position:relative;padding:10px}
+.pixel-badge::before{content:"";position:absolute;inset:10px;border:2px dashed rgba(0,0,0,.18)}
+.pixel-badge::after{content:"";position:absolute;inset:auto 14px 14px auto;width:12px;height:12px;background:var(--accent);box-shadow:-108px -108px 0 var(--accent2),-108px 0 0 var(--gold),0 -108px 0 var(--red)}
+.pixel-grid{display:grid;grid-template-columns:repeat(var(--cols),var(--px));grid-template-rows:repeat(var(--rows),var(--px));gap:0;image-rendering:pixelated;filter:drop-shadow(4px 4px 0 rgba(0,0,0,.12))}
+.pixel-grid.small{filter:none}
+.px{width:var(--px);height:var(--px);background:transparent}
+.ghost-hint{margin-top:18px;font-size:13px;font-weight:900;color:#777}
+.next-btn{width:min(340px,74vw);font-size:20px;min-height:58px}
+.stash-offer{display:none}.stash-offer.show{display:flex}.stash-offer .btn{min-height:42px;padding:0 15px;font-size:13px}
+.dice-screen .game-stage{gap:18px}
+.dice-table{width:min(760px,96vw);height:min(58vh,520px);min-height:390px;position:relative;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--panel) 72%,transparent);border:2px solid var(--line);box-shadow:6px 6px 0 color-mix(in srgb,var(--line) 18%,transparent);padding:18px;border-radius:4px}
+.dice-tray{position:relative;width:min(620px,92vw);height:320px;display:flex;align-items:flex-end;justify-content:center}
+.dice-row{width:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,2.3vw,18px);align-items:center;padding:0 clamp(12px,4vw,34px) 38px;transition:opacity .28s ease,transform .35s ease;position:relative}.dice-row::after{content:"";position:absolute;left:8%;right:8%;bottom:14px;height:14px;background:rgba(0,0,0,.08);filter:blur(6px);border-radius:999px}
+.dice-tray.closed .dice-row{opacity:.08;transform:scale(.94)}
+.die{aspect-ratio:1;width:100%;max-width:82px;background:#fff;border:3px solid #171717;box-shadow:6px 6px 0 rgba(0,0,0,.2);position:relative;border-radius:4px;transform:translateZ(0)}.die::before{content:"";position:absolute;inset:6px;border:2px solid rgba(0,0,0,.08)}
+.pip{position:absolute;width:14%;aspect-ratio:1;background:#171717;border-radius:50%;transform:translate(-50%,-50%)}
+.die.red .pip{background:#d93a4e}
+.p1{left:25%;top:25%}.p2{left:50%;top:25%}.p3{left:75%;top:25%}.p4{left:25%;top:50%}.p5{left:50%;top:50%}.p6{left:75%;top:50%}.p7{left:25%;top:75%}.p8{left:50%;top:75%}.p9{left:75%;top:75%}
+.die.rolling{animation:diceRoll .58s cubic-bezier(.24,.74,.26,1)}
+@keyframes diceRoll{0%{transform:rotate(0) scale(1)}30%{transform:rotate(120deg) scale(.85)}68%{transform:rotate(280deg) scale(1.12)}100%{transform:rotate(360deg) scale(1)}}
+.cup{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);width:min(430px,78vw);height:250px;cursor:pointer;transition:transform .48s cubic-bezier(.2,.8,.2,1),opacity .3s ease;z-index:4}
+.cup-lid{position:absolute;left:50%;top:0;transform:translateX(-50%);width:56%;height:44px;background:linear-gradient(180deg,var(--cup-hi),var(--cup-mid));clip-path:polygon(14% 0,86% 0,100% 55%,84% 100%,16% 100%,0 55%);border:3px solid #0b0d11;border-bottom:none;border-radius:4px 4px 0 0}
+.cup-body{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:100%;height:220px;background:linear-gradient(180deg,var(--cup-hi),var(--cup-mid) 28%,var(--cup-dark));clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border:3px solid #0b0d11;border-radius:8px;box-shadow:0 14px 0 color-mix(in srgb,var(--line) 22%,transparent);overflow:hidden}
+.cup-body::before{content:"";position:absolute;left:13%;right:13%;top:18px;height:8px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg);opacity:.8}
+.cup-body::after{content:"";position:absolute;left:20%;top:26%;width:60%;height:54%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),rgba(255,255,255,.18),transparent);clip-path:polygon(12% 0,88% 0,100% 100%,0 100%);opacity:.7}
+.dice-tray.open .cup{transform:translate(-50%,-88%) rotate(-5deg) scale(.82);opacity:.96}
+.dice-tray.shake .cup{animation:cupShake .46s linear}
+@keyframes cupShake{0%,100%{transform:translateX(-50%) rotate(0)}20%{transform:translateX(calc(-50% - 8px)) rotate(-2deg)}45%{transform:translateX(calc(-50% + 9px)) rotate(3deg)}70%{transform:translateX(calc(-50% - 5px)) rotate(-1deg)}}
+.dice-controls{display:flex;flex-direction:column;align-items:center;gap:10px}.dice-action{width:62px;height:62px;font-size:30px}.dice-open-hint{height:18px;color:var(--muted);font-size:11px;letter-spacing:.12em;opacity:.76}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.46);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:84px 16px 24px;z-index:20}.overlay.open{display:flex}
+.panel{width:min(430px,100%);max-height:calc(100dvh - 110px);overflow:auto;background:var(--panel);border:2px solid var(--line);box-shadow:8px 8px 0 color-mix(in srgb,var(--line) 22%,transparent);padding:20px;border-radius:3px}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.panel-title{font-weight:950;font-size:20px}.close-btn{border:0;background:transparent;font-size:23px;padding:4px 7px}
+.status-card{border:2px solid var(--soft);padding:18px;background:color-mix(in srgb,var(--bg) 70%,var(--panel));min-height:96px}.status-main{font-size:24px;font-weight:950;margin-top:8px}.status-sub{font-size:12px;color:var(--muted);margin-top:8px}
+.stash-list,.history-list{display:grid;gap:10px}.stash-item{display:grid;grid-template-columns:50px 1fr auto;gap:12px;align-items:center;border:2px solid var(--soft);padding:10px}.stash-thumb{width:46px;height:62px;background:var(--card-paper);border:2px solid #111;color:#111;display:grid;place-items:center;font-size:25px;overflow:hidden;padding:4px}.stash-meta strong{display:block}.stash-meta small{color:var(--muted)}.stash-item button{border:2px solid var(--line);background:var(--text);color:var(--bg);height:36px;padding:0 11px}
+.history-item{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;border:2px solid var(--soft);padding:10px}.history-no{font-size:12px;color:var(--muted);font-weight:900}.history-card{font-weight:900}.history-name{color:var(--muted);font-size:12px;text-align:right}
+.empty{color:var(--muted);padding:24px 8px;text-align:center}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.48);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:20px;z-index:30}.modal.open{display:flex}.modal-box{width:min(410px,100%);background:var(--panel);border:2px solid var(--line);box-shadow:8px 8px 0 color-mix(in srgb,var(--line) 22%,transparent);padding:22px}.modal-box h3{margin:0 0 8px;font-size:22px}.modal-box p{margin:0 0 18px;color:var(--muted);line-height:1.6}.field{width:100%;height:50px;border:2px solid var(--line);background:var(--bg);color:var(--text);padding:0 13px;outline:none}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}.modal-actions .btn{min-height:44px;padding:0 15px}
+.settings-row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--soft);padding:15px 0}.toggle{width:50px;height:28px;border:2px solid var(--line);background:var(--bg);position:relative}.toggle::after{content:"";position:absolute;width:18px;height:18px;background:var(--muted);top:3px;left:4px;transition:.18s}.toggle.on::after{left:24px;background:var(--accent)}
+@media (min-width:760px){.home{padding:42px}.game{padding-top:24px}.card-wrap{width:330px}.next-btn{width:330px}.overlay{padding-top:92px}}
+@media (max-width:520px){.brand h1{font-size:min(18vw,84px)}.game-top{gap:9px}.top-right{gap:6px}.icon-btn.small{width:39px;height:39px}.game-stage{padding:10px 0 8px}.card-wrap{width:min(72vw,330px)}.home-inner{gap:16px}.deck-art{transform:scale(.95)}.dice-tray{height:290px}.cup{height:220px}.cup-body{height:190px}}
+@media (max-height:700px){.home-inner{gap:13px}.brand{margin-top:0}.brand-mark{font-size:34px}.deck-art{transform:scale(.82);margin-top:-6px}.home-actions .btn{min-height:48px}.game-stage{gap:14px}.card-wrap{width:min(56vw,285px)}.next-btn{min-height:50px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <section id="homeScreen" class="screen home active" aria-label="主页">
+    <div class="home-inner">
+      <div class="home-top">
+        <div class="mode-dice">
+          <button id="diceEntryBtn" class="icon-btn" aria-label="切换到大话骰" title="大话骰">🎲</button>
+          <div class="label">MODE</div>
+        </div>
+        <div class="theme-switch" aria-label="主题切换">
+          <button id="lightThemeBtn" class="icon-btn" aria-label="浅色模式" title="浅色模式">☀</button>
+          <button id="darkThemeBtn" class="icon-btn" aria-label="深色模式" title="深色模式">☾</button>
+        </div>
+      </div>
+      <div class="brand">
+        <div class="brand-mark">🃏</div>
+        <h1>小姐牌</h1>
+        <div class="suits" aria-hidden="true"><span class="r">♥</span><span>♠</span><span class="r">♦</span><span>♣</span></div>
+      </div>
+      <div class="deck-art" aria-hidden="true"><span></span></div>
+      <div class="home-actions">
+        <button id="startBtn" class="btn primary">开始游戏</button>
+        <button id="continueBtn" class="btn ghost" hidden>继续游戏</button>
+      </div>
+      <div class="home-tools">
+        <button id="settingsBtn" class="icon-btn" aria-label="设置" title="设置">⚙</button>
+        <button id="resetBtn" class="icon-btn" aria-label="重置游戏" title="重置游戏">↻</button>
+      </div>
+      <div class="version">ZH JOKER TABLE</div>
+    </div>
+  </section>
+
+  <section id="cardScreen" class="screen game" aria-label="小姐牌游戏">
+    <header class="game-top">
+      <div class="top-left">
+        <button id="historyPanelBtn" class="icon-btn small" aria-label="抽牌记录" title="抽牌记录">◷</button>
+        <button id="cardHomeBtn" class="icon-btn small" aria-label="返回主页" title="返回主页">⌂</button>
+      </div>
+      <div class="top-center" aria-label="剩余卡牌"><div class="mini-deck">✦</div><span id="remainingCount">52</span></div>
+      <div class="top-right">
+        <button id="kPanelBtn" class="icon-btn small" aria-label="K系统" title="K系统">K</button>
+        <button id="ladyPanelBtn" class="icon-btn small" aria-label="当前小姐" title="当前小姐">♛</button>
+        <button id="stashPanelBtn" class="icon-btn small" aria-label="存卡区" title="存卡区">▣</button>
+      </div>
+    </header>
+    <main class="game-stage">
+      <div class="card-wrap" aria-live="polite">
+        <div id="card" class="card" role="button" tabindex="0" aria-label="点击翻牌查看规则">
+          <div class="card-face card-front">
+            <div id="cornerTL" class="corner tl"></div>
+            <div id="cardIllustration" class="card-illustration"></div>
+            <div id="cornerBR" class="corner br"></div>
+          </div>
+          <div class="card-face card-back">
+            <div class="card-back-inner">
+              <div id="ruleRank" class="rule-rank"></div>
+              <div id="ruleName" class="rule-name"></div>
+              <div id="ruleText" class="rule-text"></div>
+              <div id="tapHint" class="tap-hint">再次点击翻回</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="stashOffer" class="stash-offer"><button id="stashCurrentBtn" class="btn ghost">＋ 存卡</button></div>
+      <button id="nextBtn" class="btn accent next-btn">抽一张</button>
+    </main>
+  </section>
+
+  <section id="diceScreen" class="screen game dice-screen" aria-label="大话骰">
+    <header class="game-top">
+      <div class="top-left"><button id="diceHomeBtn" class="icon-btn small" aria-label="返回主页" title="返回主页">⌂</button></div>
+      <div class="top-center">🎲</div>
+      <div class="top-right"></div>
+    </header>
+    <main class="game-stage">
+      <div class="dice-table">
+        <div id="diceTray" class="dice-tray closed">
+          <div id="diceRow" class="dice-row"></div>
+          <div id="cup" class="cup" role="button" tabindex="0" aria-label="打开或关闭骰盅">
+            <div class="cup-lid"></div>
+            <div class="cup-body"></div>
+          </div>
+        </div>
+      </div>
+      <div class="dice-controls"><button id="rerollBtn" class="icon-btn dice-action" aria-label="重新摇骰子" title="重新摇骰子">↻</button><div id="diceHint" class="dice-open-hint">点击骰盅开盖</div></div>
+    </main>
+  </section>
+</div>
+
+<div id="panelOverlay" class="overlay" role="dialog" aria-modal="true">
+  <div class="panel">
+    <div class="panel-head"><div id="panelTitle" class="panel-title"></div><button id="panelClose" class="close-btn" aria-label="关闭">×</button></div>
+    <div id="panelBody"></div>
+  </div>
+</div>
+<div id="modal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-box"><h3 id="modalTitle"></h3><p id="modalText"></p><div id="modalInputWrap"></div><div id="modalActions" class="modal-actions"></div></div>
+</div>
+
+<script>
+(() => {
+  const SUITS=[{key:'S',symbol:'♠',red:false},{key:'H',symbol:'♥',red:true},{key:'D',symbol:'♦',red:true},{key:'C',symbol:'♣',red:false}];
+  const RULES={A:{name:'代酒牌',text:'指定一人代自己喝一杯。',icon:'🍻'},'2':{name:'小姐牌',text:'成为当前小姐。下一个小姐出现前，陪喝并说“老板请喝酒”。',icon:'♛'},'3':{name:'逛三园',text:'依次说出动物园里的动物，重复或答不上来的人喝酒。',icon:'🦁'},'4':{name:'照相机',text:'可在任意时刻发动。发动后先动的人喝酒。',icon:'📷'},'5':{name:'免死金牌',text:'可抵消一次喝酒。使用后消耗。',icon:'🛡️'},'6':{name:'摸鼻子',text:'可在任意时刻摸鼻子，最后摸鼻子的人喝酒。',icon:'👃'},'7':{name:'逢7必过',text:'含7或7的倍数要拍手或拍桌子，反应错的人喝酒。',icon:'👏'},'8':{name:'厕所牌',text:'持有此牌才可离席上厕所，使用后消耗。',icon:'🚻'},'9':{name:'自己喝',text:'抽到此牌的人自己喝酒。',icon:'🥃'},'10':{name:'我是神经病',text:'发动后别人不能回答你说的话，直到有人打破规则后结束。',icon:'🧠'},J:{name:'左边的人',text:'左边的人喝酒。',icon:'←'},Q:{name:'右边的人',text:'右边的人喝酒。',icon:'→'},K:{name:'K规则',text:'执行上一张K留下的酒量，然后设定下一张K要喝多少。',icon:'♚'}};
+  const STORABLE=new Set(['4','5','6','8','10']);
+  const STORAGE_KEY='zh_joker_table_misscard_v1';
+  const SETTINGS_KEY='zh_joker_table_settings_v1';
+  const JOKER_CARD={name:'准备抽牌',text:'点击这张小丑牌或下方按钮开始抽牌。',icon:'🃏'};
+  const PIPS={1:['p5'],2:['p1','p9'],3:['p1','p5','p9'],4:['p1','p3','p7','p9'],5:['p1','p3','p5','p7','p9'],6:['p1','p3','p4','p6','p7','p9']};
+  const PIXEL_ART={
+    JOKER:{rows:['...a...a...','..ab.a.ba..','..abbbba...','...cddc....','..cdeedc...','..cdffdc...','...cddc....','..g.c..g...','.g......g..','...gggg....'],palette:{'.':'transparent',a:'#7d5cff',b:'#171717',c:'#f6d6bd',d:'#ffffff',e:'#e34d61',f:'#111111',g:'#e3ad3c'}},
+    A:{rows:['............','..yy....yy..','.yyyy..yyyy.','.yccy..yccy.','.yccyyyyccy.','..yyyyyyyy..','...yy..yy...','...yy..yy...','..yyyyyyyy..','............'],palette:{'.':'transparent',y:'#e3ad3c',c:'#ffffff'}},
+    '2':{rows:['....yy......','...yyyy.....','..yyrryy....','.yyrrrryy...','..yyyyyy....','...yyyy.....','..pp..pp....','.pppppppp...','.pppppppp...','............'],palette:{'.':'transparent',y:'#e3ad3c',r:'#e34d61',p:'#7d5cff'}},
+    '3':{rows:['...kkkk.....','..kkyykk....','.kyyyyyyk...','.kykffkyk...','.kyyyyyyk...','.kyrffryk...','..krrrrk....','...krrk.....','....kk......','............'],palette:{'.':'transparent',k:'#171717',y:'#e0aa49',f:'#111111',r:'#e34d61'}},
+    '4':{rows:['............','..kkkkkkkk..','.kwwwwwwwk..','.kwkwwwwkk..','.kwwffffwk..','.kwwwwwwwk..','.kwwwwwwwk..','..kkkkkkkk..','.....kk.....','............'],palette:{'.':'transparent',k:'#171717',w:'#ffffff',f:'#6e5cff'}},
+    '5':{rows:['.....yy.....','....yyyy....','...yyrryy...','..yyrrrryy..','..yyrrrryy..','...yrrrry...','...yrrrry...','....yrry....','.....yy.....','............'],palette:{'.':'transparent',y:'#e3ad3c',r:'#7d5cff'}},
+    '6':{rows:['....pp......','...pppp.....','..pppppp....','..ppffff....','...pffff....','....ffff....','....ffff....','...ffffff...','............','............'],palette:{'.':'transparent',p:'#f0cdb0',f:'#171717'}},
+    '7':{rows:['..pp....pp..','.pppp..pppp.','.pppp..pppp.','..pp....pp..','....yy......','...yyyy.....','..yy..yy....','.yy....yy...','............','............'],palette:{'.':'transparent',p:'#f0cdb0',y:'#e3ad3c'}},
+    '8':{rows:['..kkkkkk....','..kwwwwk....','..kwwwwk....','..kwwwwk....','..kwwwwk....','..kwwwwk....','..kkkkkk....','....kk......','....kk......','............'],palette:{'.':'transparent',k:'#171717',w:'#ffffff'}},
+    '9':{rows:['.....bb.....','....bbbb....','...bbbbbb...','...bbccbb...','...bbccbb...','...bbbbbb...','....bbbb....','.....bb.....','....rrrr....','............'],palette:{'.':'transparent',b:'#8ed1ff',c:'#ffffff',r:'#e34d61'}},
+    '10':{rows:['....pp......','..pppppp....','.ppffppffp...','.pppppppp...','.pffppppfp...','.pppppppp...','..pppppp....','....pp......','............','............'],palette:{'.':'transparent',p:'#ff8fb1',f:'#7d5cff'}},
+    J:{rows:['.....kk.....','....kkkk....','..kkkkkkkk..','.kkkkkkkkkk.','..kkkkkkkk..','....kkkk....','.....kk.....','.....kk.....','.....kk.....','............'],palette:{'.':'transparent',k:'#171717'}},
+    Q:{rows:['.....kk.....','....kkkk....','..kkkkkkkk..','.kkkkkkkkkk.','..kkkkkkkk..','....kkkk....','.....kk.....','.....kk.....','.....kk.....','............'],palette:{'.':'transparent',k:'#171717'},flip:true},
+    K:{rows:['....yy......','...yyyy.....','..yyrryy....','.yyrrrryy...','..yyyyyy....','...yyyy.....','.....bb.....','....bbbb....','...bbccbb...','............'],palette:{'.':'transparent',y:'#e3ad3c',r:'#e34d61',b:'#8ed1ff',c:'#ffffff'}}
+  };
+
+  const $=id=>document.getElementById(id);
+  const homeScreen=$('homeScreen'),cardScreen=$('cardScreen'),diceScreen=$('diceScreen'),card=$('card');
+  let state=defaultState();
+  let settings={theme:'light',sound:true,haptic:true};
+  let drawing=false;
+  let dice=randomDice();
+  let diceOpen=false;
+  let diceRolling=false;
+
+  function defaultState(){return {deck:[],current:null,started:false,lady:null,kInstruction:'',stash:[],flipped:false,stashedCurrent:false,history:[],awaitingDraw:false};}
+  function suitData(k){return SUITS.find(s=>s.key===k)}
+  function makeDeck(){const ranks=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];const deck=[];for(const s of SUITS)for(const r of ranks)deck.push({id:s.key+r,suit:s.key,rank:r});for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}return deck;}
+  function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));refreshContinue();}
+  function load(){try{const raw=localStorage.getItem(STORAGE_KEY);state=raw?Object.assign(defaultState(),JSON.parse(raw)):defaultState();}catch{state=defaultState();}}
+  function saveSettings(){localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings));}
+  function loadSettings(){try{settings=Object.assign(settings,JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}'));}catch{}applyTheme();}
+  function applyTheme(){document.documentElement.dataset.theme=settings.theme;$('lightThemeBtn').classList.toggle('active',settings.theme==='light');$('darkThemeBtn').classList.toggle('active',settings.theme==='dark');document.querySelector('meta[name="theme-color"]').content=settings.theme==='dark'?'#101114':'#f7f7f5';}
+  function beep(freq=420,dur=.04){if(!settings.sound)return;try{const C=window.AudioContext||window.webkitAudioContext;const ctx=new C();const o=ctx.createOscillator(),g=ctx.createGain();o.frequency.value=freq;o.type='square';g.gain.value=.025;o.connect(g);g.connect(ctx.destination);o.start();setTimeout(()=>{o.stop();ctx.close();},dur*1000);}catch{}}
+  function buzz(ms=22){if(settings.haptic&&navigator.vibrate)navigator.vibrate(ms)}
+  function escapeHtml(str=''){return String(str).replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]));}
+  function button(text,cls,fn){const b=document.createElement('button');b.className=cls;b.textContent=text;b.onclick=fn;return b;}
+  function pixelArtHTML(key,small=false){const art=PIXEL_ART[key]||PIXEL_ART.JOKER;const px=small?3:10;const cells=art.rows.map(row=>[...row].map(ch=>`<i class="px" style="background:${art.palette[ch]||'transparent'}"></i>`).join('')).join('');const style=`--cols:${art.rows[0].length};--rows:${art.rows.length};--px:${px}px;${art.flip?'transform:scaleX(-1);':''}`;return `<div class="pixel-grid ${small?'small':''}" style="${style}">${cells}</div>`;}
+  function show(screen){[homeScreen,cardScreen,diceScreen].forEach(s=>s.classList.remove('active'));screen.classList.add('active');if(screen===homeScreen)refreshContinue();}
+  function refreshContinue(){$('continueBtn').hidden=!(state&&state.started)}
+
+  function startCardGame(){
+    const go=()=>{state=defaultState();state.deck=makeDeck();state.started=true;state.awaitingDraw=true;renderCard();updateTop();save();show(cardScreen);};
+    if(state.started&&(state.history.length||state.current))confirmModal('开始新游戏','当前小姐牌进度会被清空。',go,'开始'); else go();
+  }
+  function continueCard(){renderCard();updateTop();show(cardScreen);}
+  function renderPlaceholder(){$('cornerTL').innerHTML='<span>J</span><span class="suit">★</span>';$('cornerBR').innerHTML='<span>J</span><span class="suit">★</span>';$('cardIllustration').innerHTML=`<div><div class="pixel-badge">${pixelArtHTML('JOKER')}</div></div><div class="ghost-hint">点击开始抽牌</div>`;$('ruleRank').textContent='JOKER';$('ruleName').textContent=JOKER_CARD.name;$('ruleText').textContent=JOKER_CARD.text;$('tapHint').textContent='点击下方抽牌';$('stashOffer').classList.remove('show');$('nextBtn').textContent='抽一张';card.setAttribute('aria-label','点击开始抽牌');}
+  function renderCard(){card.classList.toggle('flipped',!!state.flipped);if(state.awaitingDraw||!state.current){renderPlaceholder();return;}const s=suitData(state.current.suit),r=RULES[state.current.rank],cls=s.red?'r':'';const corner=`<span>${state.current.rank}</span><span class="suit ${cls}">${s.symbol}</span>`;$('cornerTL').innerHTML=corner;$('cornerBR').innerHTML=corner;$('cardIllustration').innerHTML=`<div class="pixel-badge">${pixelArtHTML(state.current.rank)}</div>`;$('ruleRank').textContent=`${state.current.rank}${s.symbol}`;$('ruleName').textContent=r.name;$('ruleText').textContent=r.text;$('tapHint').textContent='再次点击翻回';$('stashOffer').classList.toggle('show',STORABLE.has(state.current.rank)&&!state.stashedCurrent);$('nextBtn').textContent='下一张';card.setAttribute('aria-label','点击翻牌查看规则');}
+  function updateTop(){$('remainingCount').textContent=state.deck.length}
+  function drawNext(){if(drawing||!state.started)return;if(!state.deck.length){infoModal('本局结束','52张牌已经全部抽完。左上角记录可核对所有抽牌。');return;}drawing=true;state.flipped=false;card.classList.remove('flipped');card.classList.add('dealing');const next=state.deck.pop();setTimeout(()=>{state.current=next;state.awaitingDraw=false;state.stashedCurrent=false;state.history.push({id:next.id,rank:next.rank,suit:next.suit,name:RULES[next.rank].name});renderCard();updateTop();save();card.classList.remove('dealing');drawing=false;beep(510);buzz();if(next.rank==='2')setTimeout(promptLady,240);if(next.rank==='K')setTimeout(promptK,240)},220);}
+  function flipCard(){if(drawing||!state.started)return;if(state.awaitingDraw||!state.current){drawNext();return;}state.flipped=!state.flipped;card.classList.toggle('flipped',state.flipped);save();beep(state.flipped?330:260);}
+  function stashCurrent(){if(!state.current||!STORABLE.has(state.current.rank)||state.stashedCurrent)return;const r=RULES[state.current.rank];state.stash.push({id:state.current.id,rank:state.current.rank,suit:state.current.suit,name:r.name,icon:r.icon});state.stashedCurrent=true;$('stashOffer').classList.remove('show');save();beep(640);buzz(35);}
+
+  function openPanel(type){const title=$('panelTitle'),body=$('panelBody');if(type==='history'){title.textContent='◷';body.innerHTML=!state.history.length?'<div class="empty">还没有抽牌记录</div>':`<div class="status-card"><div class="status-sub">已抽 / 总数</div><div class="status-main">${state.history.length} / 52</div><div class="status-sub">剩余 ${state.deck.length} 张</div></div><div style="height:12px"></div><div class="history-list">${state.history.map((c,i)=>{const s=suitData(c.suit);return `<div class="history-item"><div class="history-no">#${i+1}</div><div class="history-card ${s.red?'r':''}">${c.rank}${s.symbol}</div><div class="history-name">${escapeHtml(c.name)}</div></div>`}).join('')}</div>`;}if(type==='k'){title.textContent='K';body.innerHTML=state.kInstruction?`<div class="status-card"><div class="status-sub">下一张 K</div><div class="status-main">${escapeHtml(state.kInstruction)}</div></div>`:'<div class="empty">还没有 K 指令</div>';}
+    if(type==='lady'){title.textContent='♛';body.innerHTML=state.lady?`<div class="status-card"><div class="status-sub">当前小姐</div><div class="status-main">${escapeHtml(state.lady)}</div><div class="status-sub">直到下一张 2 出现</div></div>`:'<div class="empty">当前没有小姐</div>';}
+    if(type==='stash'){title.textContent='▣';body.innerHTML=!state.stash.length?'<div class="empty">暂无存卡</div>':`<div class="stash-list">${state.stash.map((c,i)=>`<div class="stash-item"><div class="stash-thumb">${pixelArtHTML(c.rank,true)}</div><div class="stash-meta"><strong>${escapeHtml(c.name)}</strong><small>${c.rank}${suitData(c.suit).symbol}</small></div><button data-use="${i}">使用</button></div>`).join('')}</div>`;}
+    $('panelOverlay').classList.add('open');body.querySelectorAll('[data-use]').forEach(b=>b.onclick=()=>useStash(Number(b.dataset.use)));
+  }
+  function useStash(i){const c=state.stash[i];if(!c)return;confirmModal('使用存卡',`使用「${c.name}」后，这张牌会被消耗。`,()=>{state.stash.splice(i,1);save();$('panelOverlay').classList.remove('open');beep(720);buzz(45)},'使用');}
+  function promptLady(){inputModal('新的小姐','输入名字，最多 5 个字。确认后直到下一张 2 出现前不可更改。','名字',5,v=>{state.lady=v.trim();save();});}
+  function promptK(){const prev=state.kInstruction?`先执行上一张 K：${state.kInstruction}。然后设置下一张 K。`:'这是本局第一张 K。请设置下一张 K 要喝多少。';inputModal('K',prev,'例如：两杯',10,v=>{state.kInstruction=v.trim();save();});}
+
+  function randomDice(){return Array.from({length:5},()=>1+Math.floor(Math.random()*6));}
+  function renderDice(rolling=false){$('diceRow').innerHTML=dice.map((v,i)=>`<div class="die ${(v===1||v===4)?'red':''}${rolling?' rolling':''}" style="animation-delay:${i*45}ms">${PIPS[v].map(p=>`<i class="pip ${p}"></i>`).join('')}</div>`).join('');}
+  function syncCup(){const tray=$('diceTray');tray.classList.toggle('open',diceOpen);tray.classList.toggle('closed',!diceOpen);$('diceHint').textContent=diceOpen?'点击骰盅盖上':'点击骰盅开盖';}
+  function enterDice(){renderDice(false);syncCup();show(diceScreen);}
+  function toggleCup(){if(diceRolling)return;diceOpen=!diceOpen;syncCup();beep(diceOpen?480:290);buzz(16);}
+  function rerollDice(){if(diceRolling)return;diceRolling=true;const tray=$('diceTray');if(diceOpen){renderDice(true);setTimeout(()=>{dice=randomDice();renderDice(false);diceRolling=false;beep(580);buzz(35);},620);}else{tray.classList.add('shake');setTimeout(()=>{dice=randomDice();renderDice(false);tray.classList.remove('shake');diceRolling=false;beep(430);buzz(28);},480);}}
+
+  function modalBase(t,x){$('modalTitle').textContent=t;$('modalText').textContent=x;$('modalInputWrap').innerHTML='';$('modalActions').innerHTML='';$('modal').classList.add('open');}
+  function closeModal(){$('modal').classList.remove('open');}
+  function infoModal(t,x){modalBase(t,x);$('modalActions').append(button('知道了','btn primary',closeModal));}
+  function confirmModal(t,x,yes,label='确认'){modalBase(t,x);$('modalActions').append(button('取消','btn ghost',closeModal),button(label,'btn primary',()=>{closeModal();yes();}));}
+  function inputModal(t,x,p,max,done){modalBase(t,x);const input=document.createElement('input');input.className='field';input.placeholder=p;input.maxLength=max;$('modalInputWrap').append(input);$('modalActions').append(button('取消','btn ghost',closeModal),button('确认','btn primary',()=>{const v=input.value.trim();if(!v){input.focus();return;}closeModal();done(v);}));setTimeout(()=>input.focus(),60);}
+  function openSettings(){$('panelTitle').textContent='⚙';$('panelBody').innerHTML=`<div class="settings-row"><span>音效</span><button id="soundToggle" class="toggle ${settings.sound?'on':''}"></button></div><div class="settings-row"><span>震动</span><button id="hapticToggle" class="toggle ${settings.haptic?'on':''}"></button></div>`;$('panelOverlay').classList.add('open');$('soundToggle').onclick=()=>{settings.sound=!settings.sound;saveSettings();$('soundToggle').classList.toggle('on',settings.sound);beep(500)};$('hapticToggle').onclick=()=>{settings.haptic=!settings.haptic;saveSettings();$('hapticToggle').classList.toggle('on',settings.haptic);buzz(35)};}
+  function resetCard(){if(!state.started){infoModal('没有进行中的小姐牌','开始一局小姐牌后，这里可以重置。');return;}confirmModal('重置小姐牌','牌堆、小姐、K、抽牌记录和存卡都会清空。',()=>{state=defaultState();localStorage.removeItem(STORAGE_KEY);refreshContinue();show(homeScreen);beep(210,.06);},'重置');}
+
+  $('diceEntryBtn').onclick=enterDice;$('startBtn').onclick=startCardGame;$('continueBtn').onclick=continueCard;$('settingsBtn').onclick=openSettings;$('resetBtn').onclick=resetCard;
+  $('cardHomeBtn').onclick=()=>show(homeScreen);$('diceHomeBtn').onclick=()=>show(homeScreen);
+  $('historyPanelBtn').onclick=()=>openPanel('history');$('kPanelBtn').onclick=()=>openPanel('k');$('ladyPanelBtn').onclick=()=>openPanel('lady');$('stashPanelBtn').onclick=()=>openPanel('stash');$('stashCurrentBtn').onclick=stashCurrent;
+  $('nextBtn').onclick=drawNext;card.onclick=flipCard;card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flipCard();}};
+  $('cup').onclick=toggleCup;$('cup').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleCup();}};$('rerollBtn').onclick=rerollDice;
+  $('lightThemeBtn').onclick=()=>{settings.theme='light';applyTheme();saveSettings();};$('darkThemeBtn').onclick=()=>{settings.theme='dark';applyTheme();saveSettings();};
+  $('panelClose').onclick=()=>$('panelOverlay').classList.remove('open');$('panelOverlay').onclick=e=>{if(e.target===$('panelOverlay'))$('panelOverlay').classList.remove('open');};
+  window.addEventListener('keydown',e=>{if(cardScreen.classList.contains('active')){if(e.key==='ArrowRight')drawNext();if(e.key.toLowerCase()==='f')flipCard();}if(diceScreen.classList.contains('active')){if(e.key===' ')toggleCup();if(e.key.toLowerCase()==='r')rerollDice();}});
+
+  loadSettings();load();refreshContinue();renderDice(false);syncCup();if(state.started){renderCard();updateTop();}
+})();
+</script>
+</body>
+</html>
