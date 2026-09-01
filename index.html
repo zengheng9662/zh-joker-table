@@ -4,19 +4,19 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#f7f4ff" />
-<title>小姐牌 · ZH JOKER TABLE V3.2</title>
+<title>小姐牌 · ZH JOKER TABLE V3.3</title>
 <style>
 :root{
   --bg:#f7f4ff;--panel:#ffffff;--ink:#2e2755;--muted:#8d86ad;--line:#7565c6;
   --accent:#f5649b;--accent2:#775cff;--gold:#ffc857;--red:#ed4057;--card:#fffdf8;
   --soft:#e8e2ff;--shadow:0 10px 0 rgba(56,42,111,.12),0 20px 50px rgba(94,72,160,.18);
-  --tile:rgba(255,255,255,.84);
+  --tile:rgba(255,255,255,.84);--page-art-mobile:url("assets/backgrounds/mobile-light.jpg");--page-art-desktop:url("assets/backgrounds/desktop-light.png");
 }
 html[data-theme="dark"]{
   --bg:#080610;--panel:#151023;--ink:#f7f3ff;--muted:#aaa1cc;--line:#9b5cff;
   --accent:#d13cff;--accent2:#4f75ff;--gold:#ffd24d;--red:#ff4d73;--card:#fff8ed;
   --soft:#302246;--shadow:0 10px 0 rgba(0,0,0,.35),0 0 30px rgba(210,62,255,.22),0 24px 60px rgba(0,0,0,.5);
-  --tile:rgba(18,12,33,.9);
+  --tile:rgba(18,12,33,.9);--page-art-mobile:url("assets/backgrounds/mobile-dark.jpg");--page-art-desktop:url("assets/backgrounds/desktop-dark.png");
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,"Noto Sans SC","Microsoft YaHei",monospace}
@@ -29,19 +29,19 @@ radial-gradient(circle at 90% 20%,color-mix(in srgb,var(--accent2) 13%,transpare
 linear-gradient(90deg,transparent 49.6%,color-mix(in srgb,var(--line) 7%,transparent) 50%,transparent 50.4%) 0 0/42px 42px,
 linear-gradient(transparent 49.6%,color-mix(in srgb,var(--line) 7%,transparent) 50%,transparent 50.4%) 0 0/42px 42px}
 .app{min-height:100dvh;display:flex;justify-content:center}
-.page{display:none;width:min(100%,560px);min-height:100dvh;padding:max(16px,env(safe-area-inset-top)) 18px max(22px,env(safe-area-inset-bottom));position:relative}
+.page{display:none;width:min(100%,560px);min-height:100dvh;padding:max(16px,env(safe-area-inset-top)) 18px max(22px,env(safe-area-inset-bottom));position:relative;background-image:linear-gradient(color-mix(in srgb,var(--bg) 10%,transparent),color-mix(in srgb,var(--bg) 10%,transparent)),var(--page-art-mobile);background-size:100% 100%;background-position:center;background-repeat:no-repeat;isolation:isolate}
 .page.active{display:flex;flex-direction:column}
-.frame{position:absolute;inset:8px;border:2px solid color-mix(in srgb,var(--line) 55%,transparent);border-radius:26px;pointer-events:none;box-shadow:inset 0 0 0 6px color-mix(in srgb,var(--soft) 46%,transparent)}
+.frame{display:none}
 .pixel-btn{border:3px solid var(--line);background:linear-gradient(180deg,color-mix(in srgb,var(--panel) 94%,white),var(--panel));box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--line) 25%,transparent),4px 5px 0 color-mix(in srgb,var(--line) 35%,#111),var(--shadow);border-radius:8px;font-weight:950;transition:.12s ease;min-height:48px}
 .pixel-btn:active{transform:translate(3px,3px);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--line) 25%,transparent),1px 2px 0 color-mix(in srgb,var(--line) 35%,#111)}
 .pixel-btn.primary{background:linear-gradient(180deg,#ff8fba,#f15d98);color:#fff;border-color:#8e3566}
 html[data-theme="dark"] .pixel-btn{background:linear-gradient(180deg,#351758,#1d0e35);color:#fff;border-color:#8e50e6}
 html[data-theme="dark"] .pixel-btn.primary{background:linear-gradient(180deg,#c044ff,#6328a1);border-color:#ff57ef}
 .icon-btn{width:48px;height:48px;padding:0;display:grid;place-items:center}
-.icon-btn img{width:28px;height:28px;object-fit:contain;image-rendering:pixelated}
+.icon-btn img{width:31px;height:31px;object-fit:contain;image-rendering:pixelated;display:block}
 .topbar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;position:relative;z-index:4;margin:8px 4px 0}
 .topbar .left,.topbar .right{display:flex;gap:8px}.topbar .right{justify-content:flex-end}.topbar-center{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:950;font-size:24px}
-.deck-mini{width:28px;height:36px;background:linear-gradient(145deg,#bbaaff,#7058db);border:2px solid #fff;box-shadow:3px 3px 0 #5c47b5;transform:rotate(6deg)}
+.deck-mini{width:34px;height:40px;object-fit:contain;image-rendering:pixelated;transform:rotate(3deg);filter:drop-shadow(3px 4px 0 rgba(52,32,106,.25))}
 
 /* home */
 .home{justify-content:space-between;gap:12px}
@@ -62,12 +62,12 @@ html[data-theme="dark"] .logo-title{color:#ffd139;text-shadow:3px 3px 0 #3a153e,
 /* cards */
 .game-content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;min-height:0;padding:16px 0 8px;position:relative;z-index:2}
 .card-wrap{width:min(76vw,360px);max-width:100%;aspect-ratio:5/7;perspective:1400px;flex:0 1 auto}
-.card{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.75,.25,1);cursor:pointer}.card.flipped{transform:rotateY(180deg)}.card.dealing{transform:rotateY(90deg) scale(.98)!important;transition:.22s ease}
-.card-face{position:absolute;inset:0;backface-visibility:hidden;background:var(--card);border:4px solid #171717;border-radius:15px;box-shadow:0 8px 0 rgba(0,0,0,.16),0 0 0 5px color-mix(in srgb,var(--line) 50%,transparent),0 16px 35px rgba(0,0,0,.13);overflow:hidden;color:#111}
+.card{position:relative;width:100%;height:100%;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.75,.25,1);cursor:pointer;will-change:transform}.card.flipped{transform:rotateY(180deg)}.card.dealing{transform:rotateY(90deg) scale(.98)!important;transition:.22s ease}
+.card-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(0);-webkit-transform:translateZ(0);background:var(--card);border:4px solid #171717;border-radius:15px;box-shadow:0 8px 0 rgba(0,0,0,.16),0 0 0 5px color-mix(in srgb,var(--line) 50%,transparent),0 16px 35px rgba(0,0,0,.13);overflow:hidden;color:#111}
 .card-face::after{content:"";position:absolute;inset:10px;border:2px solid color-mix(in srgb,var(--line) 45%,transparent);pointer-events:none}
-.card-back{transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;padding:30px;text-align:center;background:var(--panel);color:var(--ink)}
+.card-front{transform:rotateY(0deg) translateZ(1px);-webkit-transform:rotateY(0deg) translateZ(1px);opacity:1;transition:opacity .01s linear .24s}.card-back{transform:rotateY(180deg) translateZ(1px);-webkit-transform:rotateY(180deg) translateZ(1px);display:flex;align-items:center;justify-content:center;padding:30px;text-align:center;background:var(--panel);color:var(--ink);opacity:0;transition:opacity .01s linear .24s}.card.flipped .card-front{opacity:0}.card.flipped .card-back{opacity:1}.card:not(.flipped) .card-back{pointer-events:none}.card.flipped .card-front{pointer-events:none}
 .corner{position:absolute;display:flex;flex-direction:column;align-items:center;font-size:clamp(29px,8vw,48px);font-weight:950;line-height:.95;z-index:3}.corner.tl{left:22px;top:22px}.corner.br{right:22px;bottom:22px;transform:rotate(180deg)}.corner .suit{font-size:.72em;margin-top:7px}.red{color:var(--red)}
-.illustration{position:absolute;inset:17% 14%;display:grid;place-items:center;z-index:2}.card-art{max-width:90%;max-height:85%;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(5px 7px 0 rgba(0,0,0,.12))}
+.illustration{position:absolute;inset:17% 14%;display:grid;place-items:center;z-index:2;backface-visibility:hidden;-webkit-backface-visibility:hidden}.card-art{max-width:90%;max-height:85%;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(5px 7px 0 rgba(0,0,0,.12))}
 .rule-rank{font-size:36px;font-weight:950;color:var(--accent2)}.rule-name{font-size:25px;font-weight:950;margin:12px 0 18px}.rule-text{font-size:15px;line-height:1.7;color:var(--muted)}.tap-hint{font-size:11px;margin-top:18px;color:var(--muted)}
 #nextBtn{width:min(76vw,360px);font-size:22px;min-height:60px;flex:none}.stash-offer{display:none}.stash-offer.show{display:block}.stash-offer button{padding:0 18px;min-height:42px}
 
@@ -99,7 +99,7 @@ html[data-theme="dark"] .logo-title{color:#ffd139;text-shadow:3px 3px 0 #3a153e,
 @media (min-width:900px){
   body{overflow:auto}
   .app{min-height:100dvh;padding:18px 24px;align-items:stretch}
-  .page{width:min(calc(100vw - 48px),1180px);min-height:calc(100dvh - 36px);margin:0 auto;padding:28px 42px 34px;background:color-mix(in srgb,var(--panel) 68%,transparent);border-radius:34px;overflow:hidden}
+  .page{width:min(calc(100vw - 48px),1180px);min-height:calc(100dvh - 36px);margin:0 auto;padding:28px 42px 34px;background-image:linear-gradient(color-mix(in srgb,var(--bg) 6%,transparent),color-mix(in srgb,var(--bg) 6%,transparent)),var(--page-art-desktop);background-size:100% 100%;background-position:center;background-repeat:no-repeat;border-radius:34px;overflow:hidden}
   .frame{inset:12px;border-radius:30px;box-shadow:inset 0 0 0 8px color-mix(in srgb,var(--soft) 40%,transparent)}
   .icon-btn{width:54px;height:54px}.icon-btn img{width:31px;height:31px}
   .topbar{margin:10px 12px 0;gap:18px}.topbar .left,.topbar .right{gap:12px}.topbar-center{font-size:27px;gap:11px}
@@ -144,7 +144,7 @@ html[data-theme="dark"] .logo-title{color:#ffd139;text-shadow:3px 3px 0 #3a153e,
 }
 
 @media (max-width:420px){
-  .page{padding-left:12px;padding-right:12px}.frame{inset:5px}.icon-btn{width:44px;height:44px}.topbar{gap:6px}.topbar .left,.topbar .right{gap:5px}.logo-title{font-size:64px}.joker-mark{width:70px;height:70px}.deck-stack{width:105px;height:140px}.home-actions .pixel-btn{min-height:56px;font-size:20px}.game-content{gap:12px}.card-wrap,#nextBtn{width:min(78vw,330px)}.dice-stage{width:94vw;min-height:390px;height:61vh}.dice-row{gap:6px}.dice-cup{width:70%}
+  .page{padding-left:12px;padding-right:12px;background-size:100% 100%}.frame{inset:5px}.icon-btn{width:44px;height:44px}.topbar{gap:6px}.topbar .left,.topbar .right{gap:5px}.logo-title{font-size:64px}.joker-mark{width:70px;height:70px}.deck-stack{width:105px;height:140px}.home-actions .pixel-btn{min-height:56px;font-size:20px}.game-content{gap:12px}.card-wrap,#nextBtn{width:min(78vw,330px)}.dice-stage{width:94vw;min-height:390px;height:61vh}.dice-row{gap:6px}.dice-cup{width:70%}
 }
 @media (max-height:720px) and (max-width:899px){
   .hero{gap:4px}.joker-mark{width:58px;height:58px}.logo-title{font-size:56px}.suits{font-size:18px}.deck-stack{width:90px;height:118px}.home-actions .pixel-btn{min-height:48px}.game-content{padding-top:8px;gap:10px}.card-wrap{height:min(58vh,460px);width:auto;aspect-ratio:5/7}.dice-stage{height:62vh;min-height:360px}.dice-cup{width:58%}
@@ -156,10 +156,10 @@ html[data-theme="dark"] .logo-title{color:#ffd139;text-shadow:3px 3px 0 #3a153e,
   <section id="homeScreen" class="page home active">
     <div class="frame"></div>
     <header class="home-head">
-      <button id="diceEntry" class="pixel-btn icon-btn mode-btn" aria-label="大话骰"><img src="assets/icons/dice.png" alt=""></button>
+      <button id="diceEntry" class="pixel-btn icon-btn mode-btn" aria-label="大话骰"><img src="assets/icons-v33/dice.svg" alt=""></button>
       <div class="theme">
-        <button id="themeLight" class="pixel-btn icon-btn" aria-label="浅色模式">☀</button>
-        <button id="themeDark" class="pixel-btn icon-btn" aria-label="深色模式">☾</button>
+        <button id="themeLight" class="pixel-btn icon-btn" aria-label="浅色模式"><img src="assets/icons-v33/sun.svg" alt=""></button>
+        <button id="themeDark" class="pixel-btn icon-btn" aria-label="深色模式"><img src="assets/icons-v33/moon.svg" alt=""></button>
       </div>
     </header>
     <main class="hero">
@@ -172,8 +172,8 @@ html[data-theme="dark"] .logo-title{color:#ffd139;text-shadow:3px 3px 0 #3a153e,
       <button id="startBtn" class="pixel-btn primary">开始游戏</button>
       <button id="continueBtn" class="pixel-btn">继续游戏</button>
       <div class="home-tools">
-        <button id="settingsBtn" class="pixel-btn icon-btn" aria-label="设置">⚙</button>
-        <button id="resetBtn" class="pixel-btn icon-btn" aria-label="重置">↻</button>
+        <button id="settingsBtn" class="pixel-btn icon-btn" aria-label="设置"><img src="assets/icons-v33/settings.svg" alt=""></button>
+        <button id="resetBtn" class="pixel-btn icon-btn" aria-label="重置"><img src="assets/icons-v33/reset.svg" alt=""></button>
       </div>
     </div>
   </section>
@@ -182,14 +182,14 @@ html[data-theme="dark"] .logo-title{color:#ffd139;text-shadow:3px 3px 0 #3a153e,
     <div class="frame"></div>
     <header class="topbar">
       <div class="left">
-        <button id="historyBtn" class="pixel-btn icon-btn"><img src="assets/icons/history.png" alt=""></button>
-        <button id="homeBtn" class="pixel-btn icon-btn"><img src="assets/icons/home.png" alt=""></button>
+        <button id="historyBtn" class="pixel-btn icon-btn"><img src="assets/icons-v33/history.svg" alt=""></button>
+        <button id="homeBtn" class="pixel-btn icon-btn"><img src="assets/icons-v33/home.svg" alt=""></button>
       </div>
-      <div class="topbar-center"><span class="deck-mini"></span><span id="remainingCount">52</span></div>
+      <div class="topbar-center"><img class="deck-mini" src="assets/icons-v33/deck.svg" alt=""><span id="remainingCount">52</span></div>
       <div class="right">
-        <button id="kBtn" class="pixel-btn icon-btn"><img src="assets/icons/k.png" alt=""></button>
-        <button id="ladyBtn" class="pixel-btn icon-btn"><img src="assets/icons/crown.png" alt=""></button>
-        <button id="stashBtn" class="pixel-btn icon-btn"><img src="assets/icons/stash.png" alt=""></button>
+        <button id="kBtn" class="pixel-btn icon-btn"><img src="assets/icons-v33/k.svg" alt=""></button>
+        <button id="ladyBtn" class="pixel-btn icon-btn"><img src="assets/icons-v33/crown.svg" alt=""></button>
+        <button id="stashBtn" class="pixel-btn icon-btn"><img src="assets/icons-v33/stash.svg" alt=""></button>
       </div>
     </header>
     <main class="game-content">
@@ -207,8 +207,8 @@ html[data-theme="dark"] .logo-title{color:#ffd139;text-shadow:3px 3px 0 #3a153e,
   <section id="diceScreen" class="page dice-page">
     <div class="frame"></div>
     <header class="topbar">
-      <div class="left"><button id="diceHome" class="pixel-btn icon-btn"><img src="assets/icons/home.png" alt=""></button></div>
-      <div class="topbar-center"><img src="assets/icons/dice.png" alt="" style="width:38px;height:38px;object-fit:contain;image-rendering:pixelated"></div>
+      <div class="left"><button id="diceHome" class="pixel-btn icon-btn"><img src="assets/icons-v33/home.svg" alt=""></button></div>
+      <div class="topbar-center"><img src="assets/icons-v33/dice.svg" alt="" style="width:38px;height:38px;object-fit:contain;image-rendering:pixelated"></div>
       <div></div>
     </header>
     <main class="dice-content">
@@ -247,10 +247,10 @@ html[data-theme="dark"] .logo-title{color:#ffd139;text-shadow:3px 3px 0 #3a153e,
   function buzz(ms=22){if(settings.haptic&&navigator.vibrate)navigator.vibrate(ms)}
   function esc(s=''){return String(s).replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
   function btn(t,c,fn){const b=document.createElement('button');b.className=c;b.textContent=t;b.onclick=fn;return b}
-  function artPath(rank){return `assets/cards/card-${String(rank).toLowerCase()}.png?v=32`}
+  function artPath(rank){return `assets/cards/card-${String(rank).toLowerCase()}.png?v=33`}
 
   function startGame(){const go=()=>{state=defaults();state.deck=makeDeck();state.started=true;state.awaitingDraw=true;renderCard();updateCount();save();show(game)};if(state.started&&(state.history.length||state.current))confirmModal('开始新游戏','当前小姐牌进度会被清空。',go,'开始');else go()}
-  function renderCard(){card.classList.toggle('flipped',!!state.flipped);if(state.awaitingDraw||!state.current){$('cornerTL').innerHTML='<span>J</span><span class="suit">★</span>';$('cornerBR').innerHTML='<span>J</span><span class="suit">★</span>';$('illustration').innerHTML='<img class="card-art" src="assets/cards/joker.png?v=32" alt="小丑牌">';$('ruleRank').textContent='JOKER';$('ruleName').textContent='准备抽牌';$('ruleText').textContent='点击这张小丑牌或下方按钮开始抽牌。';$('nextBtn').textContent='抽一张';$('stashOffer').classList.remove('show');return}const s=suit(state.current.suit),r=RULES[state.current.rank],cls=s.red?'red':'';const c=`<span>${state.current.rank}</span><span class="suit ${cls}">${s.symbol}</span>`;$('cornerTL').innerHTML=c;$('cornerBR').innerHTML=c;$('illustration').innerHTML=`<img class="card-art" src="${artPath(state.current.rank)}" alt="${esc(r.name)}">`;$('ruleRank').textContent=`${state.current.rank}${s.symbol}`;$('ruleName').textContent=r.name;$('ruleText').textContent=r.text;$('nextBtn').textContent='下一张';$('stashOffer').classList.toggle('show',STORABLE.has(state.current.rank)&&!state.stashedCurrent)}
+  function renderCard(){card.classList.toggle('flipped',!!state.flipped);if(state.awaitingDraw||!state.current){$('cornerTL').innerHTML='';$('cornerBR').innerHTML='';$('illustration').innerHTML='<img class="card-art" src="assets/cards/joker.png?v=33" alt="小丑牌">';$('ruleRank').textContent='';$('ruleName').textContent='准备抽牌';$('ruleText').textContent='点击这张小丑牌或下方按钮开始抽牌。';$('nextBtn').textContent='抽一张';$('stashOffer').classList.remove('show');return}const s=suit(state.current.suit),r=RULES[state.current.rank],cls=s.red?'red':'';const c=`<span>${state.current.rank}</span><span class="suit ${cls}">${s.symbol}</span>`;$('cornerTL').innerHTML=c;$('cornerBR').innerHTML=c;$('illustration').innerHTML=`<img class="card-art" src="${artPath(state.current.rank)}" alt="${esc(r.name)}">`;$('ruleRank').textContent=`${state.current.rank}${s.symbol}`;$('ruleName').textContent=r.name;$('ruleText').textContent=r.text;$('nextBtn').textContent='下一张';$('stashOffer').classList.toggle('show',STORABLE.has(state.current.rank)&&!state.stashedCurrent)}
   function updateCount(){$('remainingCount').textContent=state.deck.length}
   function drawNext(){if(drawing||!state.started)return;if(!state.deck.length){infoModal('本局结束','52 张牌已经全部抽完，可以打开左上角记录核对。');return}drawing=true;state.flipped=false;card.classList.remove('flipped');card.classList.add('dealing');const n=state.deck.pop();setTimeout(()=>{state.current=n;state.awaitingDraw=false;state.stashedCurrent=false;state.history.push({id:n.id,rank:n.rank,suit:n.suit,name:RULES[n.rank].name});renderCard();updateCount();save();card.classList.remove('dealing');drawing=false;beep(520);buzz();if(n.rank==='2')setTimeout(promptLady,220);if(n.rank==='K')setTimeout(promptK,220)},225)}
   function flip(){if(drawing||!state.started)return;if(state.awaitingDraw||!state.current){drawNext();return}state.flipped=!state.flipped;card.classList.toggle('flipped',state.flipped);save();beep(state.flipped?320:250)}
